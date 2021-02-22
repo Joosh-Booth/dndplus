@@ -1,0 +1,29 @@
+# Add project-specific generated files to the .gitignore in the project subdirectory
+
+# Python
+venv
+_venv
+*.pyc
+.pytest_cache
+__pycache__
+**/__pycache__
+**/*.pyc
+.coverage
+.coverage.*
+htmlcov/
+
+# Js
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Other dev tools
+.DS_Store
+.idea/
+.vscode/
+.cache
+.git/
+.vagrant
+*.iml
+website-next/cypress.json
+.devcontainer/
