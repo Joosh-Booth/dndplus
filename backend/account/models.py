@@ -1,4 +1,4 @@
-from backend.dndplus.utils.tz_now import tz_now
+from backend.configuration.utils.tz_now import tz_now
 from django.db import models
 
 
