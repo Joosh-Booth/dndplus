@@ -1,4 +1,4 @@
-from backend.configuration.utils.tz_now import tz_now
+from backend.dndplus.utils.tz_now import tz_now
 from django.db import models
 
 
@@ -41,12 +41,11 @@ from django.db import models
 
 
 class User(models.Model):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(primarykey=True, unique=True)
     email_verified = models.BooleanField(default=False)
     given_names = models.CharField(max_length=127, null=True, blank=True)
     last_name = models.CharField(max_length=127, null=True, blank=True)
     status = models.BooleanField(default=True)
-    gender = models.CharField(max_length=20, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     date_joined = models.DateField(default=tz_now)
 #    profile_photo = models.ImageField(
