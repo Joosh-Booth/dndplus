@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@dnd/*": ["./src/*"],
+      "@components/*": ["./src/components"]
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import SignupForm from "@components/FormSignup"
 
 const Homepage = () => {
   return (
@@ -9,6 +10,10 @@ const Homepage = () => {
       <text>Password: </text> 
       <input></input>
       <button>Sign up</button>
+      <div>
+        <SignupForm></SignupForm>
+      </div>
+      
     </div>
   );
 };
