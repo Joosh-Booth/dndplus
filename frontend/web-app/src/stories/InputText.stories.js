@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput  from '../components/inputs/TextInput';
+import TextInput  from '@components/inputs/TextInput';
 
 export default {
   title: 'Components/Inputs/Text',

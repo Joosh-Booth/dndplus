@@ -31,18 +31,17 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-export default function MyModal({body}) {
+export default function MyModal({
+  open=false, 
+  body,
+  onCloseHandler = () => null,
+}) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
-    setOpen(false);
+    onCloseHandler(false)
   };
 
   const modalStyledBody = (
@@ -56,9 +55,7 @@ export default function MyModal({body}) {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
+      
       <Modal
         open={open}
         onClose={handleClose}

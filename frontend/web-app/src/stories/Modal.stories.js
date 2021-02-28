@@ -1,10 +1,13 @@
 import React from 'react';
-import Modal  from '../components/Modal';
+import {Modal}  from '@components/Modals';
+import SignupForm from '@components/forms/SignupForm';
 
 
 export default {
-  title: 'Components/Modal',
+  title: 'Components/Modals/BaseModal',
   component: Modal,
 }
 
-export const ModalStory = () => <Modal >Button</Modal>;
+export const EmptyModalStoryOpen = () => <Modal open={true}>Button</Modal>;
+export const EmptyModalStoryNotOpen = () => <Modal open={false}>Button</Modal>;
+export const FormModalStory = () => <Modal open body={<SignupForm></SignupForm>}/>;

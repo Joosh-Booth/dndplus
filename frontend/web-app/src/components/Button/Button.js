@@ -3,12 +3,27 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
+import modernEraFamily from '@dnd/theme'
+
+const getPrimaryColours = {
+  color: "#fff",
+  borderColor: "#278F3A",
+  backgroundColor: "#278F3A",
+  ":hover": {
+    backgroundColor: "#177E29",
+    borderColor: "#177E29",
+  },
+  ":active": {
+    backgroundColor: "#278F3A",
+    borderColor: "#278F3A",
+  },
+};
+
 
 const Container = styled("button")(
   {
     display: "inline-flex",
     flexDirection: "row",
-    borderWidth: 1,
     borderStyle: "solid",
     textDecoration: "none",
     position: "relative",
@@ -28,7 +43,7 @@ const Container = styled("button")(
   },
   (props) => {
     return {
-      padding: props.padding || "14px 20px 14px 20px",
+      padding: props.padding || "8px 20px 8px 20px",
       fontSize: props.fontSize || 18,
     };
   },
@@ -37,9 +52,9 @@ const Container = styled("button")(
       cursor: disabled ? "auto" : "pointer",
       width: stretch ? "100%" : "auto",
       transition: "all .2s ease-in-out",
-      color: disabledColor(6),
-      backgroundColor: disabledColor(3),
-      borderColor: disabledColor(3),
+      color: '#ff0000',
+      backgroundColor: '#00ff00',
+      borderColor: '#0000ff',
       ":hover": {
         transition: "all .1s ease-in-out",
       },
@@ -48,13 +63,13 @@ const Container = styled("button")(
       },
     };
 
-    if (disabled) {
-      return { ...baseRules };
-    } else if (secondary) {
-      return { ...baseRules, ...getSecondaryColours };
-    } else {
+    //if (disabled) {
+      //return { ...baseRules };
+   //} else if (secondary) {
+     // return { ...baseRules, ...getSecondaryColours };
+    //} else {
       return { ...baseRules, ...getPrimaryColours };
-    }
+    //}
   }
 );
 
@@ -82,14 +97,14 @@ class Button extends React.PureComponent {
     return (
       <Container
         onClick={!disabled && !success ? onClick : () => null}
-        disabled={disabled || submitting}
+      disabled={disabled || submitting}
         submitting={submitting}
         outline={outline}
         padding={padding}
         fontSize={fontSize}
         {...other}
       >
-        {submitting ? (
+        {/* {submitting ? (
           <div style={{ marginRight: unit(1) }}>
             <CircularProgress
               color={disabledColor(10)}
@@ -116,7 +131,7 @@ class Button extends React.PureComponent {
               {icon}
             </div>
           )
-        ) : null}
+        ) : null} */}
         <div
           css={{
             display: "flex",
