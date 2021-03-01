@@ -1,4 +1,4 @@
-from configuration.utils import tz_now
+from configuration.utils import (tz_now, number_generator)
 from django.db import models
 
 
@@ -38,7 +38,10 @@ from django.db import models
 
 
 
-    
+
+def reference_generator():
+    return number_generator(10)
+
 
 class User(models.Model):
     email = models.EmailField(primary_key=True, unique=True)
@@ -55,6 +58,7 @@ class User(models.Model):
     # Permissions
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    reference = models.CharField(max_length=10, default=reference_generator, unique=True)
 
     # REQUIRED_FIELDS = []
     # USERNAME_FIELD = "email"
