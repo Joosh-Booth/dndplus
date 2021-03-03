@@ -9,8 +9,7 @@ class TestUserByReferenceQuery:
     query = '''
         query testUserByReference ($reference: String!) {
             userByReference (reference: $reference) {
-                givenNames
-                lastName
+                userName
                 email
                 reference
             }
@@ -24,7 +23,7 @@ class TestUserByReferenceQuery:
     @pytest.fixture
     def user(self):
         return UserFactory(
-            given_names="Arnold", last_name="Schwarzenegger"
+            user_name="noob"
         )
 
     def test_user_by_reference(self, client, user):
@@ -32,7 +31,6 @@ class TestUserByReferenceQuery:
         assert len(result['data']) == 1
 
         user_response = result["data"]["userByReference"]
-        assert user_response["givenNames"] == "Arnold"
-        assert user_response["lastName"] == "Schwarzenegger"
+        assert user_response["userName"] == "noob"
         assert user_response["reference"] == user.reference
         assert user_response["email"] == user.email

@@ -1,0 +1,30 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{js,json,jsx,ts,tsx}]
+indent_size = 2
+
+[*.{md,mdx}]
+trim_trailing_whitespace = false
+indent_size = 2
+
+[*.css]
+indent_size = 2
+
+[*.html]
+indent_size = 2
+
+[*.yml]
+indent_size = 2
+
+# No indent convention preferred for .sh files, but we'll use 4 as devs will be familiar with
+# Python coding practices
+[*.sh]
+indent_size = 4
