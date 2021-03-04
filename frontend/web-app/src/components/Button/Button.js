@@ -3,7 +3,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
-import modernEraFamily from '@dnd/theme'
+import {modernEraFamily} from '@dnd/theme'
 
 const getPrimaryColours = {
   color: "#fff",

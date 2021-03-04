@@ -8,15 +8,15 @@ class TestUserModel:
 
     @pytest.fixture
     def user(self):
-        return UserFactory(user_name="user1", is_active=True, is_staff=False)
+        return UserFactory(username="user1", is_active=True, is_staff=False)
 
     @pytest.fixture
     def staff_user(self):
-        return UserFactory(user_name="user2", is_active=True, is_staff=True)
+        return UserFactory(username="user2", is_active=True, is_staff=True)
 
     @pytest.fixture
     def inactive_user(self):
-        return UserFactory(user_name="user3", is_active=False, is_staff=False)
+        return UserFactory(username="user3", is_active=False, is_staff=False)
 
     def test_active_non_staff(self, user, staff_user, inactive_user):
         assert User.objects.count() == 3

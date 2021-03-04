@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
                 ('email', models.EmailField(max_length=254, unique=True)),
                 ('email_verified', models.BooleanField(default=False)),
-                ('user_name', models.CharField(max_length=127, null=True, unique=True)),
+                ('username', models.CharField(max_length=127, null=True, unique=True)),
                 ('status', models.BooleanField(default=True)),
                 ('date_of_birth', models.DateField(blank=True, null=True)),
                 ('date_joined', models.DateField(default=configuration.utils.tz_now)),

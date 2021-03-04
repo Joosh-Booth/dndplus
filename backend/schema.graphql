@@ -1,0 +1,49 @@
+schema {
+  query: RootQuery
+  mutation: RootMutation
+}
+
+type CreateUserError {
+  nonFieldErrors: [String!]!
+  fieldErrors: [CreateUserInvalidField!]!
+}
+
+enum CreateUserFieldName {
+  EMAIL
+  PASSWORD
+  USERNAME
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+type CreateUserInvalidField {
+  fieldName: CreateUserFieldName!
+  errors: [String!]!
+}
+
+union CreateUserPayload = CreateUserError | CreateUserSuccess
+
+type CreateUserSuccess {
+  user: User!
+}
+
+type RootMutation {
+  createUser(input: CreateUserInput!): CreateUserPayload!
+}
+
+type RootQuery {
+  userByReference(reference: String!): User
+}
+
+type User {
+  localId: ID!
+  email: String!
+  username: String!
+  isActive: Boolean!
+  isStaff: Boolean!
+  reference: String!
+}

@@ -8,14 +8,14 @@ from user.forms.create_user import NewUserForm
 
 
 class CreateUserInput(graphene.InputObjectType):
-    user_name = graphene.String(required=True)
+    username = graphene.String(required=True)
     email = graphene.String(required=True)
     password = graphene.String(required=True)
 
 class CreateUserFieldName(graphene.Enum):
     EMAIL = 'email'
     PASSWORD = 'password'
-    USER_NAME = 'user_name'
+    USERNAME = 'username'
 
 class CreateUserInvalidField(graphene.ObjectType):
     field_name = graphene.Field(CreateUserFieldName, required=True)

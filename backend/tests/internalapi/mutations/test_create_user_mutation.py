@@ -16,7 +16,7 @@ class TestCreateUserMutation:
                     user {
                         localId
                         email
-                        userName
+                        username
                     }
                 }
                 ... on CreateUserError {
@@ -43,7 +43,7 @@ class TestCreateUserMutation:
         return {
             "input": {
                 "email": "testymctestface@flatmatch.com",
-                "userName": "created user one",
+                "username": "createdUserOne",
                 "password": "TestPassword"
             }
         }
@@ -58,13 +58,13 @@ class TestCreateUserMutation:
         user_response = result["user"]
         variable_input = variable_values["input"]
         assert user_response["email"] == variable_input["email"]
-        assert user_response["userName"] == variable_input["userName"]
+        assert user_response["username"] == variable_input["username"]
         assert DjangoUser.objects.count() == 1
 
         user_instance = DjangoUser.objects.first()
         assert user_instance.email == variable_input["email"]
         print("user_instance:"+str(user_instance.email))
-        assert user_instance.user_name == variable_input["userName"]
+        assert user_instance.username == variable_input["username"]
 
         # Check that the user was sent an email when this mutation was successfully ran
         # assert len(mail.outbox) == 1

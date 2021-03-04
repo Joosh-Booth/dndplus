@@ -1,17 +1,22 @@
 import React from "react";
-import SignupForm from "@components/forms/SignupForm"
+import { CoupledModal, Modal }  from '@components/Modals';
+import SignupForm from '@components/forms/SignupForm';
+import Button  from '@components/Button';
 
 const Homepage = () => {
   return (
     <div>
       <h1>DND PLUS</h1>
-      <text>Username: </text> 
-      <input></input>
-      <text>Password: </text> 
-      <input></input>
-      <button>Sign up</button>
       <div>
-        <SignupForm></SignupForm>
+        <CoupledModal 
+          modalElement={
+            <Modal
+              body={<SignupForm></SignupForm>}
+            />
+          }
+          element={<Button >Sign up</Button>}
+
+        /> 
       </div>
       
     </div>
