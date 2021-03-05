@@ -1,3 +1,4 @@
+import re
 from configuration.utils import (tz_now, number_generator)
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 
@@ -39,6 +40,8 @@ class UserManager(BaseUserManager):
 def reference_generator():
     return number_generator(10)
 
+def username_allowed(string):
+    return re.compile("^[a-zA-Z0-9]*$").search(string) if string else False
 
 class User(AbstractBaseUser):
     email = models.EmailField(unique=True)

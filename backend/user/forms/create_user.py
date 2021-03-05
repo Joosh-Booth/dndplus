@@ -1,9 +1,15 @@
 from django import forms
 
-from user.models import User
+from user.models import User, username_allowed
 
 
 class UserForm(forms.ModelForm):
+    def clean(self, *args, **kwargs):
+        cleaned_data=super().clean()
+        username = cleaned_data.get("username")
+        if not username_allowed(username):
+            self.add_error("username","Invalid username")
+
     class Meta:
         model = User
         fields = (
