@@ -1,6 +1,6 @@
 import React from "react";
 import { CoupledModal, Modal }  from '@components/Modals';
-import SignupForm from '@components/forms/SignupForm';
+import { SignupForm } from '@components/forms';
 import Button  from '@components/Button';
 
 const Homepage = () => {

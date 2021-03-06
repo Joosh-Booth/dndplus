@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -11,18 +11,31 @@ import TextInput from "@components/inputs/TextInput"
 import Text from "@components/Text"
 import { VerticalContainer } from "@components/containers"
 
+//put signup form and login form in seperate component that changes state depending on which one is open.
+//clicking logging or signup switches state to other.
+const FIELD_ERROR_TO_FIELD_MAP = {
+  EMAIL: "email",
+  PASSWORD: "password",
+  USERNAME: "username",
+};
+
+const mapFieldErrors = (fieldErrors) =>
+  fieldErrors.reduce((acc, value) => {
+    acc[FIELD_ERROR_TO_FIELD_MAP[value.fieldName]] = value.errors[0];
+    return acc;
+  }, {});
 
 
 const SignupForm = () => {
   const signupSchema = Yup.object({
     username: Yup.string(
-      ).required(
-        "A username is required"
-      ).max(
-        10,"too long"
-      ).matches(
-        "^[a-zA-Z0-9]*$", 
-        { message:"invalid", excludeEmptyString:true }
+    ).required(
+      "A username is required"
+    ).max(
+      10, "too long"
+    ).matches(
+      "^[a-zA-Z0-9]*$",
+      { message: "invalid", excludeEmptyString: true }
     ),
     email: Yup.string().required("Required"),
     password: Yup.string().required("Required"),
@@ -34,30 +47,46 @@ const SignupForm = () => {
       }
     )
   })
+  const [success, setSuccess] = useState(false)
+  const [createUser] = useMutation(CREATE_USER)
 
-  const [createUser] = useMutation(
-    CREATE_USER,
-    {
-      onCompleted(data) {
-        console.log(data);
-      }
-    }
-  )
 
 
   return (
-    <Formik
+    !success ? <Formik
       initialValues={{ username: "", email: "", password: "" }}
       validationSchema={signupSchema}
-      onSubmit={(values) => {
+      onSubmit={async (values, { setErrors, setStatus }) => {
         delete values.passwordConfirmation // Remove extra input field as it is only used for validation
-        createUser({
+        let response = await createUser({
           variables: { input: { ...values } },
-          onComplete: (data) => {
-            console.log(data)
-          },
-          onError: (error) => { console.log("ERROR"); console.log(error) }
         })
+        if (response.data) {
+          console.log(response)
+          if (response.data.createUser.__typename === "CreateUserSucces") {
+            setSuccess(true)
+
+          } else if (response.data.createUser.__typename === "CreateUserError") {
+            const { fieldErrors, nonFieldErrors } = response.data.createUser;
+            if (fieldErrors && fieldErrors.length > 0) {
+              const errors = mapFieldErrors(fieldErrors)
+              setErrors(errors);
+
+              const nodeList = document.getElementsByName(
+                Object.keys(errors)[0]
+              );
+              const element = nodeList[0];
+              element.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+              });
+            }
+            if (nonFieldErrors && nonFieldErrors.length > 0) {
+              setStatus(nonFieldErrors[0]);
+            }
+          }
+        }
       }}>
 
       {({
@@ -80,7 +109,6 @@ const SignupForm = () => {
                 ? <Text style={{ fontSize: 14, color: '#ff0000' }}>{errors.username}</Text>
                 : null
               }
-
             </>
 
             <>
@@ -116,7 +144,7 @@ const SignupForm = () => {
           </VerticalContainer>
         </form>
       )}
-    </Formik>
+    </Formik> : <Text>test</Text>
   );
 }
 
