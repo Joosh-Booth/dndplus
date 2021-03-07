@@ -9,22 +9,15 @@ import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
 import Text from "@components/Text"
 import { VerticalContainer } from "@components/containers"
+import { AUTHORISE_USER } from '@components/mutations'
 
-
-
-const FIELD_ERROR_TO_FIELD_MAP = {
-  PASSWORD: "password",
-  USERNAME: "username",
-};
-
-const mapFieldErrors = (fieldErrors) =>
-  fieldErrors.reduce((acc, value) => {
-    acc[FIELD_ERROR_TO_FIELD_MAP[value.fieldName]] = value.errors[0];
-    return acc;
-  }, {});
+import { useCookies } from 'react-cookie';
 
 
 const LoginForm = () =>{
+  const [authoriseUser] = useMutation(AUTHORISE_USER)
+  const [cookies, setCookie] = useCookies(['token']);
+
 
   const signupSchema = Yup.object({
     username: Yup.string().required("Required" ),
@@ -36,7 +29,11 @@ const LoginForm = () =>{
       initialValues={{ username: "", password: "" }}
       validationSchema={signupSchema}
       onSubmit={async (values, { setErrors, setStatus }) => {
-              
+        let response = await authoriseUser({
+          variables: { input: { ...values } },
+        })
+        console.log(response)
+        setCookie('token', response.data.authoriseUser.token,{ path: '/' });
       }}>
 
       {({

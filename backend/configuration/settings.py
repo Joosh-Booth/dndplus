@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'corsheaders',
     "internalapi.apps.InternalAPIConfig",
-    'user.apps.UserConfig'
+    'user.apps.UserConfig',
+    "graphql_auth"
 ]
 
 MIDDLEWARE = [
@@ -118,6 +119,35 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+GRAPHQL_AUTH = {
+    'LOGIN_ALLOWED_FIELDS': ['email', 'username'],
+    # ...
+    'UPDATE_MUTATION_FIELDS':[],
+    'USER_NODE_EXCLUDE_FIELDS': ["password"],
+    'SEND_ACTIVATION_EMAIL':'False'
+}
+
+GRAPHQL_JWT = {
+    #...
+    "JWT_ALLOW_ANY_CLASSES": [
+        "graphql_auth.mutations.Register",
+        "graphql_auth.mutations.VerifyAccount",
+        "graphql_auth.mutations.ResendActivationEmail",
+        "graphql_auth.mutations.SendPasswordResetEmail",
+        "graphql_auth.mutations.PasswordReset",
+        "graphql_auth.mutations.ObtainJSONWebToken",
+        "graphql_auth.mutations.VerifyToken",
+        "graphql_auth.mutations.RefreshToken",
+        "graphql_auth.mutations.RevokeToken",
+        "graphql_auth.mutations.VerifySecondaryEmail",
+    ],
+}
+
+AUTHENTICATION_BACKENDS = [
+    "graphql_auth.backends.GraphQLAuthBackend",
+    'django.contrib.auth.backends.ModelBackend',
+ 
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

@@ -3,6 +3,22 @@ schema {
   mutation: RootMutation
 }
 
+type AuthoriseUserError {
+  nonFieldErrors: [String!]!
+}
+
+input AuthoriseUserInput {
+  username: String!
+  password: String!
+}
+
+union AuthoriseUserPayload = AuthoriseUserError | AuthoriseUserSuccess
+
+type AuthoriseUserSuccess {
+  user: User!
+  token: String!
+}
+
 type CreateUserError {
   nonFieldErrors: [String!]!
   fieldErrors: [CreateUserInvalidField!]!
@@ -33,6 +49,7 @@ type CreateUserSuccess {
 
 type RootMutation {
   createUser(input: CreateUserInput!): CreateUserPayload!
+  authoriseUser(input: AuthoriseUserInput!): AuthoriseUserPayload!
 }
 
 type RootQuery {

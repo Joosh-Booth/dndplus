@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Main from './Main';
-
+import { useCookies } from 'react-cookie';
 import { onError } from '@apollo/client/link/error';
 import {ApolloClient, ApolloProvider,ApolloLink,HttpLink,InMemoryCache } from '@apollo/client';
 
@@ -26,9 +26,12 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [cookies, setCookie] = useCookies(['token']);
+  
   return (
     <ApolloProvider client={client}>
       <div className="App">
+        {cookies.token && <h1>Hello token is there</h1>}
         <Main/>
       </div>  
     </ApolloProvider>

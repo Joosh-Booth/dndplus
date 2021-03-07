@@ -12,16 +12,16 @@ class UserManager(BaseUserManager):
     def active_non_staff(self):
         return self.get_queryset().filter(is_active=True, is_staff=False, user_type__isnull=False)
 
-    def _create_user(self, email, username, password, **extra_fields):
+    def _create_user(self,  username, email, password, **extra_fields):
         if not email:
             raise ValueError('An email is required')
         if not username:
             raise ValueError('A username is required')
 
         
-        email = self.normalize_email(email)
         username = username
-        user = self.model(email=email,username=username, **extra_fields)
+        email = self.normalize_email(email)
+        user = self.model(username=username,email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -47,7 +47,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     email_verified = models.BooleanField(default=False)
     username = models.CharField(max_length=15, null=True, unique=True)
-    status = models.BooleanField(default=True)
+    #status = models.BooleanField(default=True)
     date_of_birth = models.DateField(null=True, blank=True)
     date_joined = models.DateField(default=tz_now)
     
@@ -56,9 +56,9 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     reference = models.CharField(max_length=10, default=reference_generator, unique=True)
 
-    REQUIRED_FIELDS = ['email']
+    #REQUIRED_FIELDS = ['email']
     USERNAME_FIELD = "username"
-
+    EMAIL_FIELD='email'
     objects = UserManager()
 
     @property
