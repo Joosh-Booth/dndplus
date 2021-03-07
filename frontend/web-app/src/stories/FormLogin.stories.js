@@ -1,13 +1,13 @@
 import React from 'react';
-import {SignupForm}  from '@components/forms';
+import { LoginForm }  from '@components/forms';
 import { CREATE_USER } from '@components/mutations'
 import { MockedProvider } from '@apollo/client/testing'
 import { gql } from '@apollo/client';
 
 
 export default {
-  title: 'Components/Forms/Signup',
-  component: SignupForm,
+  title: 'Components/Forms/Login',
+  component: LoginForm,
 }
 
 
@@ -45,7 +45,7 @@ const mocks = [
 ];
 
 
-export const SignupFormStory = () => <MockedProvider mocks={mocks} ><SignupForm ></SignupForm></MockedProvider>;
+export const LoginFormStory = () => <LoginForm/>
 
 
 
