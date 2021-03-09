@@ -1,23 +1,23 @@
-import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
+import React from "react";
+import { useDispatch } from 'react-redux'
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { mixed } from "yup";
 
+import { setAccessToken } from '@components/authentication'
 import Button from "@components/Button"
+import { VerticalContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
-import Text from "@components/Text"
-import { VerticalContainer } from "@components/containers"
 import { AUTHORISE_USER } from '@components/mutations'
+import { set } from '@components/slices/loginSlice'
+import Text from "@components/Text"
 
-import { useCookies } from 'react-cookie';
 
 
 const LoginForm = () =>{
   const [authoriseUser] = useMutation(AUTHORISE_USER)
-  const [cookies, setCookie] = useCookies(['token']);
-
+  const dispatch = useDispatch()
 
   const signupSchema = Yup.object({
     username: Yup.string().required("Required" ),
@@ -33,7 +33,8 @@ const LoginForm = () =>{
           variables: { input: { ...values } },
         })
         console.log(response)
-        setCookie('token', response.data.authoriseUser.token,{ path: '/' });
+        setAccessToken(response.data.authoriseUser.token)
+        dispatch(set(true))
       }}>
 
       {({

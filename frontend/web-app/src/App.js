@@ -1,10 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import Main from './Main';
-import { useCookies } from 'react-cookie';
-import { onError } from '@apollo/client/link/error';
-import {ApolloClient, ApolloProvider,ApolloLink,HttpLink,InMemoryCache } from '@apollo/client';
 
+import {ApolloClient, ApolloProvider,ApolloLink,HttpLink,InMemoryCache } from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
+import { Provider } from 'react-redux'
+
+import Main from './Main';
+import store from '@dnd/app/store'
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -26,14 +27,13 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [cookies, setCookie] = useCookies(['token']);
-  
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        {cookies.token && <h1>Hello token is there</h1>}
-        <Main/>
-      </div>  
+      <Provider store={store}>
+        <div className="App">  
+          <Main/>
+        </div>  
+      </Provider>
     </ApolloProvider>
   );
 }

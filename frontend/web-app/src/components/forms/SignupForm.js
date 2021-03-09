@@ -5,11 +5,11 @@ import * as Yup from "yup";
 import { mixed } from "yup";
 
 import Button from "@components/Button"
-import { CREATE_USER } from '@components/mutations'
+import { VerticalContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
+import { CREATE_USER } from '@components/mutations'
 import Text from "@components/Text"
-import { VerticalContainer } from "@components/containers"
 
 //put signup form and login form in seperate component that changes state depending on which one is open.
 //clicking logging or signup switches state to other.
@@ -63,9 +63,8 @@ const SignupForm = () => {
         })
         if (response.data) {
           console.log(response)
-          if (response.data.createUser.__typename === "CreateUserSucces") {
+          if (response.data.createUser.__typename === "CreateUserSuccess") {
             setSuccess(true)
-
           } else if (response.data.createUser.__typename === "CreateUserError") {
             const { fieldErrors, nonFieldErrors } = response.data.createUser;
             if (fieldErrors && fieldErrors.length > 0) {
@@ -144,7 +143,7 @@ const SignupForm = () => {
           </VerticalContainer>
         </form>
       )}
-    </Formik> : <Text>test</Text>
+    </Formik> : <Text>Success</Text>
   );
 }
 
