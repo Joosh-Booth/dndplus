@@ -26,7 +26,7 @@ const mapFieldErrors = (fieldErrors) =>
   }, {});
 
 
-const SignupForm = () => {
+const SignupForm = ({ swap = () => null }) => {
   const signupSchema = Yup.object({
     username: Yup.string(
     ).required(
@@ -99,7 +99,7 @@ const SignupForm = () => {
           <VerticalContainer style={{ justifyContent: 'space-around' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <H1 style={{}}>Sign up now</H1>
-              <Text style={{ textAlign: 'bottom' }}>Log in</Text>
+              <Text style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Log in</Text>
             </div>
             <>
               <Text>Username: </Text>

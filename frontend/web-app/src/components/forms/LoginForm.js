@@ -15,16 +15,16 @@ import Text from "@components/Text"
 
 
 
-const LoginForm = () =>{
+const LoginForm = ({ swap = () => null }) => {
   const [authoriseUser] = useMutation(AUTHORISE_USER)
   const dispatch = useDispatch()
 
   const signupSchema = Yup.object({
-    username: Yup.string().required("Required" ),
+    username: Yup.string().required("Required"),
     password: Yup.string().required("Required")
   })
 
-  return(
+  return (
     <Formik
       initialValues={{ username: "", password: "" }}
       validationSchema={signupSchema}
@@ -48,7 +48,7 @@ const LoginForm = () =>{
           <VerticalContainer style={{ justifyContent: 'space-around' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <H1 style={{}}>Log in</H1>
-              <Text style={{ textAlign: 'bottom' }}>Sign up</Text>
+              <Text style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Sign up</Text>
             </div>
 
             <>
