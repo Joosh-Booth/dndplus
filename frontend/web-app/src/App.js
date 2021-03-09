@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 
 import Main from './Main';
 import store from '@dnd/app/store'
+import GlobalStyles from '@dnd/app/GlobalStyle'
+
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -29,6 +31,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <GlobalStyles/>
       <Provider store={store}>
         <div className="App">  
           <Main/>

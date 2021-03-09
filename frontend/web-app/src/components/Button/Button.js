@@ -43,7 +43,7 @@ const Container = styled("button")(
   },
   (props) => {
     return {
-      padding: props.padding || "8px 20px 8px 20px",
+      padding: props.padding || "5px 16px 5px 16px",
       fontSize: props.fontSize || 18,
     };
   },

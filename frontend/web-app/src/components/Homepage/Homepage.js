@@ -16,8 +16,9 @@ const Homepage = () => {
       {getAccessToken()}
       <h1>DND PLUS</h1>
         
-    {login  ?<div onClick={()=>{setAccessToken(null); dispatch(set(false))}}>log out</div>:
-     <> 
+    {login  ?
+    <div  onClick={()=>{setAccessToken(null); dispatch(set(false))}}>log out</div>:
+     <div style={{display:'inline-flex'}}> 
      <div>
        <CoupledModal 
          modalElement={
@@ -41,7 +42,7 @@ const Homepage = () => {
 
        /> 
      </div>
-   </>
+   </div>
     
     }
       
