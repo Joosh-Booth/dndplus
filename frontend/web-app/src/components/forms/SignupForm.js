@@ -62,7 +62,6 @@ const SignupForm = ({ swap = () => null }) => {
           variables: { input: { ...values } },
         })
         if (response.data) {
-          console.log(response)
           if (response.data.createUser.__typename === "CreateUserSuccess") {
             setSuccess(true)
           } else if (response.data.createUser.__typename === "CreateUserError") {

@@ -32,7 +32,6 @@ const LoginForm = ({ swap = () => null }) => {
         let response = await authoriseUser({
           variables: { input: { ...values } },
         })
-        console.log(response)
         setAccessToken(response.data.authoriseUser.token)
         dispatch(set(true))
       }}>
