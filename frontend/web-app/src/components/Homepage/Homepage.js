@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getAccessToken, removeAccessToken } from '@components/authentication'
 import { set, selectLogin } from '@components/slices/loginSlice'
-import { SignupOrLogin } from '@components/SignupOrLogin/SignupOrLogin'
+import SignupOrLogin from '@components/SignupOrLogin'
+import { AuthWrapper } from "@components/authentication";
 
 const Homepage = () => {
   const loggedIn = useSelector(selectLogin)
@@ -18,6 +19,13 @@ const Homepage = () => {
         </div>
         : <SignupOrLogin />
       }
+      <div>
+        <AuthWrapper 
+          
+        >
+          THIS IS AUTHENTICATED
+        </AuthWrapper>
+      </div>
     </div>
   );
 };

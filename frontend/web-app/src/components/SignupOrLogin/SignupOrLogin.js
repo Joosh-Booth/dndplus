@@ -4,10 +4,7 @@ import Button from '@components/Button';
 import { CoupledModal, Modal } from '@components/Modals';
 
 
-
-
-
-export const SignupOrLogin = () => {
+const SignupOrLogin = () => {
   const [modal, setModal] = useState()
 
   return (
@@ -31,3 +28,4 @@ export const SignupOrLogin = () => {
 
 }
 
+export default SignupOrLogin
