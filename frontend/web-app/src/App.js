@@ -1,6 +1,6 @@
 import './App.css';
-
-import {ApolloClient, ApolloProvider,ApolloLink,HttpLink,InMemoryCache } from '@apollo/client';
+import fetch from 'cross-fetch';
+import { ApolloClient, ApolloProvider, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 import { Provider } from 'react-redux'
 
@@ -18,7 +18,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 const httpLink = new HttpLink({
-  uri: "http://localhost:8000/graphql"
+  uri: "http://localhost:8000/graphql",
+  fetch
   // Additional options
 });
 const link = ApolloLink.from([errorLink,httpLink]);

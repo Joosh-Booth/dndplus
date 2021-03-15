@@ -1,6 +1,8 @@
-export const getAccessToken =()=>localStorage.getItem('token')
+import Cookies from 'js-cookie';
 
-export const setAccessToken =(token)=>{localStorage.setItem('token',token)}
-export const removeAccessToken =()=>{localStorage.removeItem('token')}
+export const getAccessToken =()=>Cookies.get('token')
+
+export const setAccessToken =(token)=>{Cookies.set('token',token)}
+export const removeAccessToken =()=>{Cookies.remove('token')}
 
 export { AuthWrapper } from "./AuthWrapper"

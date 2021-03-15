@@ -4,10 +4,9 @@ import { removeAccessToken, AuthWrapper } from '@components/authentication'
 import { useDispatch } from 'react-redux'
 
 import Button from '@components/Button'
-import Text from '@components/Text'
 import { HorizontalContainer } from '@components/containers'
 import { set } from '@components/slices/loginSlice'
-import { getBackgroundColour} from "@dnd/theme";
+import Text from '@components/Text'
 
 const NavBar = () => {
   const dispatch = useDispatch()
@@ -16,8 +15,9 @@ const NavBar = () => {
     <HorizontalContainer 
       style={{ 
         boxShadow:'0px 0px 10px 1px #cccccc',
-        //background:`${getBackgroundColour(2)}`, 
         padding:`10px 30px`,
+        margin:`0px 0px 50px 0px`,
+        alignItems:'center'
       }}>
         
       <Text style={{fontWeight:'bold'}}>DnD Plus</Text>
@@ -25,7 +25,7 @@ const NavBar = () => {
       <HorizontalContainer style={{ marginLeft: 'auto'}}>
         <AuthWrapper
           childrenWhenUnauthenticated={<SignupOrLogin />}
-          children={<Button onClick={() => { removeAccessToken(); dispatch(set(false)) }}>log out</Button>}
+          children={<Button onClick={() => { removeAccessToken(); dispatch(set(false)) }}>log out</Button>} //eventually profile
         />
       </HorizontalContainer>
     </HorizontalContainer>

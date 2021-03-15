@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
-const VerticalContainer = styled.div({
+const VerticalFlexContainer = styled.div({
   display: "flex",
   flexDirection: "column",
 });
 
-export default VerticalContainer;
+export default VerticalFlexContainer;

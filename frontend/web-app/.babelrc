@@ -1,10 +1,17 @@
 {
+  "presets": [
+    "razzle/babel",
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@emotion/babel-preset-css-prop"
+  ],
   "plugins": [
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
     ["module-resolver", {
-      "root": ["."],
+      "root": ["./"],
       "alias": {
         "@dnd": "./src",
-        "@components": "components"
+        "@components": "./src/components"
       }
     }]
   ]

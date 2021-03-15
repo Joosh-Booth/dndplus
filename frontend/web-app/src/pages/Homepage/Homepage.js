@@ -1,15 +1,36 @@
 import React from "react";
 
-import { AuthWrapper } from '@components/authentication'
-import { VerticalContainer } from '@components/containers'
+import { VerticalContainer, HorizontalContainer, CenteredContainer } from '@components/containers'
 
-
+const boxCss = {
+  backgroundColor:'white',
+  width:'25%',
+  height:500,
+  borderRadius:25,
+  ":hover": {
+    boxShadow:'0px 5px 10px 10px #cccccc', 
+  },
+}
 const Homepage = () => {
   return (
-    <VerticalContainer>
-      <AuthWrapper>
-        THIS IS AUTHENTICATED
-      </AuthWrapper>
+    <VerticalContainer >
+      <HorizontalContainer style={{justifyContent:'space-around'}}>
+        <CenteredContainer 
+          css={boxCss}
+        >
+          Create
+        </CenteredContainer>
+        <CenteredContainer 
+          css={boxCss}
+        >
+          Join
+        </CenteredContainer>
+        <CenteredContainer 
+          css={boxCss}
+        >
+          Build
+        </CenteredContainer>
+      </HorizontalContainer>
     </VerticalContainer>
   );
 };
