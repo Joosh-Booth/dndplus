@@ -17,8 +17,8 @@ const SignupOrLogin = () => {
         }
         element={
           <div>
+            <Button style={{marginRight:5}} onClick={() => setModal('LogIn')}>Log In</Button>
             <Button onClick={() => setModal('SignUp')}>Sign up</Button>
-            <Button onClick={() => setModal('LogIn')}>Log In</Button>
           </div>
         }
 

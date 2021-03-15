@@ -3,19 +3,19 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
-import {modernEraFamily} from '@dnd/theme'
+import {modernEraFamily, getButtonColour} from '@dnd/theme'
 
 const getPrimaryColours = {
   color: "#fff",
-  borderColor: "#278F3A",
-  backgroundColor: "#278F3A",
+  borderColor: getButtonColour(2),
+  backgroundColor: getButtonColour(1),
   ":hover": {
-    backgroundColor: "#177E29",
-    borderColor: "#177E29",
+    backgroundColor: getButtonColour(2),
+    borderColor: getButtonColour(2),
   },
   ":active": {
-    backgroundColor: "#278F3A",
-    borderColor: "#278F3A",
+    backgroundColor: getButtonColour(1),
+    borderColor: getButtonColour(2),
   },
 };
 
