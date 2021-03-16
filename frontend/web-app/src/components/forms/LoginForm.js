@@ -6,7 +6,7 @@ import * as Yup from "yup";
 
 import { setAccessToken } from '@components/authentication'
 import Button from "@components/Button"
-import { VerticalContainer } from "@components/containers"
+import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
 import { AUTHORISE_USER } from '@components/mutations'
@@ -44,7 +44,7 @@ const LoginForm = ({ swap = () => null }) => {
         errors,
       }) => (
         <form onSubmit={handleSubmit}>
-          <VerticalContainer style={{ justifyContent: 'space-around' }}>
+          <VerticalFlexContainer style={{ justifyContent: 'space-around' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <H1 style={{}}>Log in</H1>
               <Text style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Sign up</Text>
@@ -71,7 +71,7 @@ const LoginForm = ({ swap = () => null }) => {
             <div style={{ paddingTop: 20, display: 'flex', justifyContent: 'center' }}>
               <Button>submit</Button>
             </div>
-          </VerticalContainer>
+          </VerticalFlexContainer>
         </form>
       )}
     </Formik>

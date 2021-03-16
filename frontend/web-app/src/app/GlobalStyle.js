@@ -18,7 +18,7 @@ const GlobalStyles = () => (
       html {
         
         background: linear-gradient(183deg, white 0%, ${getBackgroundColour(3)} 65%,  ${getBackgroundColour(5)} 100%);
-        height: 100vh
+        height: 100%
       }
       body {
         font-size: 16px;

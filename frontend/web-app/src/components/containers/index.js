@@ -1,3 +1,4 @@
-export { default as VerticalContainer } from "./VerticalFlexContainer"
-export { default as HorizontalContainer } from "./HorizontalFlexContainer"
 export { default as CenteredContainer } from "./CenteredContainer"
+export { default as HorizontalFlexContainer } from "./HorizontalFlexContainer"
+export { default as HoverableContainer } from "./HoverableContainer"
+export { default as VerticalFlexContainer } from "./VerticalFlexContainer"

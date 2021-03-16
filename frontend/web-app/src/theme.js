@@ -16,6 +16,16 @@ export const baseText = css({
   WebkitFontSmoothing: "antialiased",
 });
 
+export const textOutline = 
+  `-1px -1px 0 #000,
+  0   -1px 0 #000,
+  1px -1px 0 #000,
+  1px  0   0 #000,
+  1px  1px 0 #000,
+  0    1px 0 #000,
+  -1px  1px 0 #000,
+  -1px  0   0 #000`
+
 
 export const PALETTE={
   beige:{

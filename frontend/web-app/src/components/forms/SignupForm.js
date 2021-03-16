@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { mixed } from "yup";
 
 import Button from "@components/Button"
-import { VerticalContainer } from "@components/containers"
+import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
 import { CREATE_USER } from '@components/mutations'
@@ -95,7 +95,7 @@ const SignupForm = ({ swap = () => null }) => {
         errors,
       }) => (
         <form onSubmit={handleSubmit}>
-          <VerticalContainer style={{ justifyContent: 'space-around' }}>
+          <VerticalFlexContainer style={{ justifyContent: 'space-around' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <H1 style={{}}>Sign up now</H1>
               <Text style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Log in</Text>
@@ -139,7 +139,7 @@ const SignupForm = ({ swap = () => null }) => {
             <div style={{ paddingTop: 20, display: 'flex', justifyContent: 'center' }}>
               <Button>submit</Button>
             </div>
-          </VerticalContainer>
+          </VerticalFlexContainer>
         </form>
       )}
     </Formik> : <Text>Success</Text>
