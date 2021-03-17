@@ -7,6 +7,7 @@ import Button from '@components/Button'
 import { HorizontalFlexContainer } from '@components/containers'
 import { set } from '@components/slices/loginSlice'
 import Text from '@components/Text'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   const dispatch = useDispatch()
@@ -19,13 +20,22 @@ const NavBar = () => {
         margin:`0px 0px 50px 0px`,
         alignItems:'center'
       }}>
-        
-      <Text style={{fontWeight:'bold'}}>DnD Plus</Text>
+
+      <Link css={{ textDecoration: 'none' }} to="/">  
+        <Text style={{fontWeight:'bold'}}>DnD Plus</Text>
+      </Link>
       
       <HorizontalFlexContainer style={{ marginLeft: 'auto'}}>
         <AuthWrapper
           childrenWhenUnauthenticated={<SignupOrLogin />}
-          children={<Button onClick={() => { removeAccessToken(); dispatch(set(false)) }}>log out</Button>} //eventually profile
+          children={
+            <Link to="/">
+              <Button 
+                onClick={() => { removeAccessToken(); dispatch(set(false)) }}
+                children={"log out"}
+              />
+            </Link>
+            } //eventually profile
         />
       </HorizontalFlexContainer>
     </HorizontalFlexContainer>

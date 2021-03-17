@@ -10,7 +10,6 @@ const HoverableContainer = ({ children, outterCss, title, titleCss, innerCss }) 
     display: "flex",
     flexDirection: "column",
     backgroundColor: 'white',
-    width: '25%',
     height: 500,
     borderRadius: 20,
     cursor: 'pointer',

@@ -1,7 +1,9 @@
 import { useState } from "react";
+
+import { HorizontalFlexContainer } from '@components/containers'
 import { LoginForm, SignupForm } from "@components/forms";
-import Button from '@components/Button';
 import { CoupledModal, Modal } from '@components/Modals';
+import Text from '@components/Text'
 
 
 const SignupOrLogin = () => {
@@ -16,10 +18,11 @@ const SignupOrLogin = () => {
           />
         }
         element={
-          <div>
-            <Button style={{marginRight:5}} onClick={() => setModal('LogIn')}>Log In</Button>
-            <Button onClick={() => setModal('SignUp')}>Sign up</Button>
-          </div>
+          <HorizontalFlexContainer>
+            <Text style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={() => setModal('LogIn')}>Log In</Text>
+            <div css={{ borderLeft: "2px solid #888888", marginRight: 5, marginLeft: 7 }} />
+            <Text style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={() => setModal('SignUp')}>Sign up</Text>
+          </HorizontalFlexContainer>
         }
 
       />

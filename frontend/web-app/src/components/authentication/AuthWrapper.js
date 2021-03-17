@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import { set, selectLogin } from '@components/slices/loginSlice'
+import { useSelector } from 'react-redux'
+
 import { LoginForm, SignupForm } from '@components/forms'
+import { H1 } from '@components/headers'
+import { selectLogin } from '@components/slices/loginSlice'
 
 // Default should show login screen, allows for defined children when unauthenticated
 
@@ -9,9 +11,9 @@ const DefaultUnauthenticated=()=>{
   const [form, setForm] = useState('LogIn')
 
   return(
-    <div style={{align:'start'}}>
-      Please login to view this page
-      <div style={{width:"50%",}}>
+    <div style={{padding:"0 30px 30px 30px"}}>
+      <H1>You must be logged in to view this page</H1>
+      <div style={{width:"40%", paddingTop:30}}>
       {
         form==='SignUp'
           ?<SignupForm swap={()=>setForm('LogIn')}/>
