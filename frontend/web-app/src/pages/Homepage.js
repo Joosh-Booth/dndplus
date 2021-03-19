@@ -27,7 +27,7 @@ const Homepage = () => {
           </HoverableContainer>
         </Link>
         
-        <Link to="/create_game" css={{width:"25%"}}>
+        <Link to="/join_game" css={{width:"25%"}}>
           <HoverableContainer title="Join">
             <CenteredContainer css={{padding:10}}>
               <Text css={{color:"white"}}>
