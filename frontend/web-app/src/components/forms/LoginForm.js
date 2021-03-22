@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { setAccessToken } from '@components/authentication'
+import { setAccessToken,setId } from '@components/authentication'
 import Button from "@components/Button"
 import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
@@ -12,6 +12,7 @@ import TextInput from "@components/inputs/TextInput"
 import { AUTHORISE_USER } from '@components/mutations'
 import { set } from '@components/slices/loginSlice'
 import Text from "@components/Text"
+import { isTypeSystemDefinitionNode } from 'graphql';
 
 
 
@@ -19,7 +20,7 @@ const LoginForm = ({ swap = () => null }) => {
   const [authoriseUser] = useMutation(AUTHORISE_USER)
   const dispatch = useDispatch()
 
-  const signupSchema = Yup.object({
+  const loginSchema = Yup.object({
     username: Yup.string().required("Required"),
     password: Yup.string().required("Required")
   })
@@ -27,13 +28,16 @@ const LoginForm = ({ swap = () => null }) => {
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
-      validationSchema={signupSchema}
+      validationSchema={loginSchema}
       onSubmit={async (values, { setErrors, setStatus }) => {
         let response = await authoriseUser({
           variables: { input: { ...values } },
         })
-        setAccessToken(response.data.authoriseUser.token)
-        dispatch(set(true))
+        if (response.data.authoriseUser.__typename === "AuthoriseUserSuccess"){
+          setAccessToken(response.data.authoriseUser.token)
+          setId(response.data.authoriseUser.user.localId)
+          dispatch(set(true))
+        }
       }}>
 
       {({
