@@ -1,8 +1,8 @@
 import graphene
 from django.contrib.auth import authenticate
-
 from django.core.exceptions import NON_FIELD_ERRORS
 from graphql_jwt.shortcuts import get_token, get_user_by_token
+from graphql_jwt.decorators import login_required
 from internalapi.definitions.user import User
 
 
@@ -37,9 +37,8 @@ class IsAuthenticated(graphene.Mutation):
         input_data = IsAuthenticatedInput(required=True, name="input")
 
     Output = graphene.NonNull(IsAuthenticatedPayload)
-
+    @login_required
     def mutate(self, info, input_data):
-        print("here")
         print(get_user_by_token(input_data.token).id)
         print(input_data.id)
         if get_user_by_token(input_data.token).id == input_data.id:

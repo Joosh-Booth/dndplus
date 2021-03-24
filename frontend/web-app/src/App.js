@@ -1,12 +1,19 @@
 import './App.css';
 import fetch from 'cross-fetch';
-import { ApolloClient, ApolloProvider, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
+import { 
+  ApolloClient, 
+  ApolloProvider, 
+  ApolloLink, 
+  HttpLink, 
+  InMemoryCache, 
+  from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 import { Provider } from 'react-redux'
 
-import Main from './Main';
+import Main from '@dnd/Main';
 import store from '@dnd/app/store'
 import GlobalStyles from '@dnd/app/GlobalStyle'
+import { getAccessToken } from '@components/authentication';
 
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -22,11 +29,30 @@ const httpLink = new HttpLink({
   fetch
   // Additional options
 });
-const link = ApolloLink.from([errorLink,httpLink]);
+
+const authMiddleware = new ApolloLink((operation, forward) => {
+  // add the authorization to the headers
+  const token = getAccessToken();
+   
+    operation.setContext(({ headers }) => ({
+      headers: {
+        ...headers,
+        authorization: token?`JWT ${token}`:"",
+      }
+    }))
+    
+    return forward(operation);
+    
+})
 
 const client = new ApolloClient({
- link:link,
- cache: new InMemoryCache() 
+  link:from([
+    authMiddleware,
+    errorLink,
+    httpLink
+  ]),
+  
+  cache: new InMemoryCache() 
 });
 
 function App() {

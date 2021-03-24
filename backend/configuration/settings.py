@@ -49,6 +49,11 @@ INSTALLED_APPS = [
     "graphql_auth"
 ]
 
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+JWT_VERIFY_EXPIRATION = False
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.middleware.JWTMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
