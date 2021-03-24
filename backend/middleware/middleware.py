@@ -17,8 +17,9 @@ class JWTMiddleware(object):
         auth = None
         try:
             auth = get_user_by_token(token[4:])
-        except Exception:
+        except Exception as e:
             print("Exception in AuthMiddleware raised")
+            print(e)
             return
 
         request.user = auth
