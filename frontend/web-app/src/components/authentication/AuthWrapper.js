@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { LoginForm, SignupForm } from '@components/forms'
 import { H1 } from '@components/headers'
 import { selectLogin } from '@components/slices/loginSlice'
+import SSRLimiter from '@components/SSRLimiter'
 
 // Default should show login screen, allows for defined children when unauthenticated
 
@@ -30,6 +31,6 @@ export const AuthWrapper = ({children, childrenWhenUnauthenticated=<DefaultUnaut
   return(
     loggedIn
       ?children
-      :childrenWhenUnauthenticated
+      :<SSRLimiter client={childrenWhenUnauthenticated} server={"SERVER"}/>
   )
 }
