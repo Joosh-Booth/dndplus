@@ -1,10 +1,11 @@
-import { useMutation } from '@apollo/client';
 import React from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import { useMutation } from '@apollo/client';
 import { useDispatch } from 'react-redux'
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { setAccessToken,setId } from '@components/authentication'
+import { setAccessToken, setId } from '@components/authentication'
 import Button from "@components/Button"
 import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
@@ -12,13 +13,16 @@ import TextInput from "@components/inputs/TextInput"
 import { AUTHORISE_USER } from '@components/mutations'
 import { set } from '@components/slices/loginSlice'
 import Text from "@components/Text"
-import { isTypeSystemDefinitionNode } from 'graphql';
 
 
 
 const LoginForm = ({ swap = () => null }) => {
   const [authoriseUser] = useMutation(AUTHORISE_USER)
   const dispatch = useDispatch()
+
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } }
 
   const loginSchema = Yup.object({
     username: Yup.string().required("Required"),
@@ -33,10 +37,13 @@ const LoginForm = ({ swap = () => null }) => {
         let response = await authoriseUser({
           variables: { input: { ...values } },
         })
-        if (response.data.authoriseUser.__typename === "AuthoriseUserSuccess"){
+        if (response.data.authoriseUser.__typename === "AuthoriseUserSuccess") {
           setAccessToken(response.data.authoriseUser.token)
           setId(response.data.authoriseUser.user.localId)
           dispatch(set(true))
+          if (location.pathname == "/login") {
+            history.replace(from)
+          }
         }
       }}>
 
