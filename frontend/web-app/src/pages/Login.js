@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet'
 import { LoginForm } from '@components/forms'
 import { selectLogin } from '@components/slices/loginSlice'
 import { useSelector } from 'react-redux'
@@ -7,7 +8,10 @@ import { useSelector } from 'react-redux'
 const Login = () => {
   const loggedIn = useSelector(selectLogin)
   return (
-    loggedIn ? "Youre already logged in" : <LoginForm />
+    <>
+      <Helmet title="DNDPlus | Log in"/>
+      {loggedIn ? "Youre already logged in" : <LoginForm />}
+    </>
   )
 }
 

@@ -1,10 +1,11 @@
-
+import Helmet from 'react-helmet'
 
 
 const CreateCampaign = () =>{
   return (
     <>
-     CREATE CAMPAIGN
+      <Helmet title="DNDPlus | Create game"/>
+      CREATE CAMPAIGN
     </>
   )
 };

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Helmet from 'react-helmet'
 import { useMutation } from "@apollo/client";
 import { gql } from '@apollo/client';
 import { Formik } from "formik";
@@ -49,6 +50,7 @@ const JoinCampaign = () => {
         handleSubmit,
       }) => (
         <div>
+          <Helmet title="DNDPlus | Join game"/>
           JOIN CAMPAIGN
           <br />
             Recent Campgaigns | select from your campaigns | join a new campaigns
