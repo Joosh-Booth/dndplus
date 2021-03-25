@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { Helmet } from "react-helmet"
 import { 
   VerticalFlexContainer,
   HorizontalFlexContainer,
@@ -10,10 +10,10 @@ import {
 import Text from '@components/Text'
 
 
-
 const Homepage = () => {
   return (
     <VerticalFlexContainer >
+      <Helmet title="Welcome to DNDPlus"/>
       <HorizontalFlexContainer style={{justifyContent:'space-around'}}>
 
         <Link to="/create_game" css={{width:"25%"}}>

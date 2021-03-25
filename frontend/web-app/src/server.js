@@ -8,16 +8,16 @@ const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const cssLinksFromAssets = (assets, entrypoint) => {
   return assets[entrypoint] ? assets[entrypoint].css ?
-  assets[entrypoint].css.map(asset=>
-    `<link rel="stylesheet" href="${asset}">`
-  ).join('') : '' : '';
+    assets[entrypoint].css.map(asset =>
+      `<link rel="stylesheet" href="${asset}">`
+    ).join('') : '' : '';
 };
 
 const jsScriptTagsFromAssets = (assets, entrypoint, extra = '') => {
   return assets[entrypoint] ? assets[entrypoint].js ?
-  assets[entrypoint].js.map(asset=>
-    `<script src="${asset}"${extra}></script>`
-  ).join('') : '' : '';
+    assets[entrypoint].js.map(asset =>
+      `<script src="${asset}"${extra}></script>`
+    ).join('') : '' : '';
 };
 
 const server = express();
@@ -37,19 +37,20 @@ server
     } else {
       res.status(200).send(
         `<!doctype html>
-    <html lang="">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta charset="utf-8" />
-        <title>Welcome to DnDPlus</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        ${cssLinksFromAssets(assets, 'client')}
-    </head>
-    <body>
-        <div id="root">${markup}</div>
-        ${jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin')}
-    </body>
-</html>`
+          <html lang="">
+            <head>
+              <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+              <meta charset="utf-8" />
+              <title>Welcome to DnDPlus</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+              ${cssLinksFromAssets(assets, 'client')}
+            </head>
+            <body>
+              <div id="root">${markup}</div>
+              ${jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin')}
+            </body>
+          </html>`
       );
     }
   });
