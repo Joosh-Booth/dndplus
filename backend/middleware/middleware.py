@@ -1,4 +1,5 @@
 from graphql_jwt.shortcuts import get_token, get_user_by_token
+from django.contrib.auth.models import AnonymousUser
 
 
 class JWTMiddleware(object):
@@ -20,7 +21,7 @@ class JWTMiddleware(object):
         except Exception as e:
             print("Exception in AuthMiddleware raised")
             print(e)
-            return
-
-        request.user = auth
+        
+        request.errors= ["test"]
+        request.user = auth if auth else AnonymousUser()
         print("AuthMiddleware ended successfully")

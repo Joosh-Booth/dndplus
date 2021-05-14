@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     "internalapi.apps.InternalAPIConfig",
     'user.apps.UserConfig',
+    'campaign.apps.CampaignConfig',
     "graphql_auth"
 ]
 

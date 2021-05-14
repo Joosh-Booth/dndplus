@@ -15,7 +15,7 @@ const IS_AUTHENTICATED = gql`
           string
         }
         ... on IsAuthenticatedError{
-          nonFieldErrors
+          errors
         } 
     }
   }

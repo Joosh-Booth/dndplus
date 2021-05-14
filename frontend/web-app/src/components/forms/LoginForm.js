@@ -10,14 +10,14 @@ import Button from "@components/Button"
 import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
-import { AUTHORISE_USER } from '@components/mutations'
+import { AUTHENTICATE_USER } from '@components/mutations'
 import { set } from '@components/slices/loginSlice'
 import Text from "@components/Text"
 
 
 
 const LoginForm = ({ swap = () => null }) => {
-  const [authoriseUser] = useMutation(AUTHORISE_USER)
+  const [authenticateUser] = useMutation(AUTHENTICATE_USER)
   const dispatch = useDispatch()
 
   let history = useHistory();
@@ -34,12 +34,12 @@ const LoginForm = ({ swap = () => null }) => {
       initialValues={{ username: "", password: "" }}
       validationSchema={loginSchema}
       onSubmit={async (values, { setErrors, setStatus }) => {
-        let response = await authoriseUser({
+        let response = await authenticateUser({
           variables: { input: { ...values } },
         })
-        if (response.data.authoriseUser.__typename === "AuthoriseUserSuccess") {
-          setAccessToken(response.data.authoriseUser.token)
-          setId(response.data.authoriseUser.user.localId)
+        if (response.data.authenticateUser.__typename === "AuthenticateUserSuccess") {
+          setAccessToken(response.data.authenticateUser.token)
+          setId(response.data.authenticateUser.user.localId)
           dispatch(set(true))
           if (location.pathname == "/login") {
             history.replace(from)

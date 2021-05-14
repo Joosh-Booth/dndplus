@@ -3,18 +3,18 @@ schema {
   mutation: RootMutation
 }
 
-type AuthoriseUserError {
+type AuthenticateUserError {
   nonFieldErrors: [String!]!
 }
 
-input AuthoriseUserInput {
+input AuthenticateUserInput {
   username: String!
   password: String!
 }
 
-union AuthoriseUserPayload = AuthoriseUserError | AuthoriseUserSuccess
+union AuthenticateUserPayload = AuthenticateUserError | AuthenticateUserSuccess
 
-type AuthoriseUserSuccess {
+type AuthenticateUserSuccess {
   user: User!
   token: String!
 }
@@ -47,9 +47,25 @@ type CreateUserSuccess {
   user: User!
 }
 
+type IsAuthenticatedError {
+  errors: [String!]!
+}
+
+input IsAuthenticatedInput {
+  token: String!
+  id: Int!
+}
+
+union IsAuthenticatedPayload = IsAuthenticatedError | IsAuthenticatedSuccess
+
+type IsAuthenticatedSuccess {
+  string: String!
+}
+
 type RootMutation {
   createUser(input: CreateUserInput!): CreateUserPayload!
-  authoriseUser(input: AuthoriseUserInput!): AuthoriseUserPayload!
+  authenticateUser(input: AuthenticateUserInput!): AuthenticateUserPayload!
+  isAuthenticated(input: IsAuthenticatedInput!): IsAuthenticatedPayload!
 }
 
 type RootQuery {
