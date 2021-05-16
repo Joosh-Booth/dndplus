@@ -23,5 +23,4 @@ class TestCampaignModel:
         campaign = Campaign.objects.first()
         assert campaign.title == "test campaign"
         assert campaign.created_by == user
-        print(campaign.roomCode)
         return
