@@ -1,8 +1,6 @@
 import graphene
 
 from django.core.exceptions import NON_FIELD_ERRORS
-
-#from communication.email.user.new_user import send_new_user_email
 from internalapi.definitions.user import User
 from user.forms.create_user import NewUserForm
 
