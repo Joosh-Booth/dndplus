@@ -1,11 +1,12 @@
 import uuid 
+import random
 from django.db import models
 from configuration.utils import tz_now
 from user.models import User
 
 class Campaign(models.Model):
     roomCode = models.CharField(max_length=7, unique=True, default=uuid.uuid4().hex[:7].upper())
-    title = models.CharField(max_length=24, blank=False)
+    title = models.CharField(max_length=30, blank=False)
     created_at = models.DateField(default=tz_now)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 

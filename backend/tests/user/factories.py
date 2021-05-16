@@ -9,7 +9,7 @@ class UserFactory(factory.django.DjangoModelFactory):
 
     email = factory.Sequence(lambda n: f"test-{n}@dndplus.com")
     email_verified = True
-    username = "pussyslayer69420"
+    username = "pussyslayer6942"
     is_active = True
     is_staff = False
 
