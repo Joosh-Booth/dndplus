@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     boxSizing: "border-box",
     backgroundColor: "#FFF",
-    borderRadius: props.fullPage ? 0 : 2,
+    borderRadius: props.fullPage ? 0 : 20,
     outline: 0,
     display:'auto'
   }),
