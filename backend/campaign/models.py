@@ -13,12 +13,12 @@ class Campaign(models.Model):
     def save(self, *args, **kwargs):
         chars = list(range(48,57))+list(range(65,90))
         code = ""
-        while code in Campaign.objects.filter(roomCode=code) or code == "":
+        while code in Campaign.objects.filter(room_code=code) or code == "":
             code = ""
             for _ in range(7):
                 code += chr(chars[random.randrange(len(chars))])
 
-        self.roomCode = code
+        self.room_code = code
         super(Campaign, self).save(*args,**kwargs)
 
 
