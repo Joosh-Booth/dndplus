@@ -1,10 +1,9 @@
 import graphene
 
 from django.core.exceptions import NON_FIELD_ERRORS
+from graphql_jwt.decorators import login_required
 from internalapi.definitions.campaign import Campaign
-#create campaign form
-from user.forms.create_user import NewUserForm
-
+from campaign.forms.create_campaign import NewCampaignForm
 
 class CreateCampaignInput(graphene.InputObjectType):
     title = graphene.String(required=True)
@@ -39,12 +38,13 @@ class CreateCampaign(graphene.Mutation):
 
     Output = graphene.NonNull(CreateCampaignPayload)
 
+    @login_required
     def mutate(self, info, input_data):
-
-        form = NewUserForm(data=input_data)
+        input_data.created_by = info.context.user
+        form = NewCampaignForm(data=input_data)
         if form.is_valid():
-            user = form.save()
-            return CreateCampaignSuccess(user=user)
+            campaign = form.save()
+            return CreateCampaignSuccess(campaign=campaign)
 
         field_errors = []
         non_field_errors = []
