@@ -9,7 +9,7 @@ import { setAccessToken, setId } from '@components/authentication'
 import Button from "@components/Button"
 import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
-import TextInput from "@components/inputs/TextInput"
+import { TextInput } from "@components/inputs"
 import { AUTHENTICATE_USER } from '@components/mutations'
 import { set } from '@components/slices/loginSlice'
 import Text from "@components/Text"

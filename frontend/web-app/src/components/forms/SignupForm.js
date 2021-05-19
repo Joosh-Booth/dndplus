@@ -7,7 +7,7 @@ import { mixed } from "yup";
 import Button from "@components/Button"
 import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
-import TextInput from "@components/inputs/TextInput"
+import { TextInput } from "@components/inputs"
 import { CREATE_USER } from '@components/mutations'
 import Text from "@components/Text"
 
