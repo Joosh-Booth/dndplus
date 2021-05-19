@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        //"checkJs": true,
+        //"jsx": "react",
+        //""
+        "paths": {
+            "@dnd/*": ["./src/*"],
+            "@components/*": ["./src/components/*"]
+        }
+    }
+}
