@@ -2,4 +2,4 @@ import styled from "@emotion/styled";
 
 import { baseText } from "@dnd/theme";
 
-export const H1 = styled.h1(baseText, { fontWeight:'bold',fontSize:40, });
+export const H2 = styled.h2(baseText, { fontWeight:'bold',fontSize:35, });

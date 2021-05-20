@@ -1,6 +1,6 @@
 import React from 'react';
 import {HoverableContainer,CenteredContainer}  from '@components/containers';
-import Text from '@components/Text'
+import { RegularText } from "@dnd/components/texts"
 
 export default {
   title: 'Components/Containers/HoverableContainer',
@@ -9,7 +9,7 @@ export default {
 
 export const HoverableContainerStory = () => <HoverableContainer title="Hover over me">
   <CenteredContainer css={{padding:10}}>
-    <Text css={{color:"white"}}>
+    <RegularText css={{color:"white"}}>
       Lorem Ipsum is simply dummy text of the 
       printing and typesetting industry. Lorem 
       Ipsum has been the industry's standard 
@@ -23,6 +23,6 @@ export const HoverableContainerStory = () => <HoverableContainer title="Hover ov
       sheets containing Lorem Ipsum passages, and 
       more recently with desktop publishing software 
       like Aldus PageMaker including versions of Lorem Ipsum.
-    </Text>
+    </RegularText>
   </CenteredContainer>
 </HoverableContainer>;

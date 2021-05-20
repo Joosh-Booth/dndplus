@@ -7,7 +7,7 @@ import {
   CenteredContainer,
   HoverableContainer
 } from '@components/containers'
-import Text from '@components/Text'
+import { RegularText } from "@dnd/components/texts"
 
 
 const Homepage = () => {
@@ -20,9 +20,9 @@ const Homepage = () => {
           <HoverableContainer 
             title="Create">
             <CenteredContainer css={{padding:10}}>
-              <Text css={{color:"white"}}>
+              <RegularText css={{color:"white"}}>
                 Create an adventure for yourself and some friends      
-              </Text>
+              </RegularText>
             </CenteredContainer>
           </HoverableContainer>
         </Link>
@@ -30,9 +30,9 @@ const Homepage = () => {
         <Link to="/join_game" css={{width:"25%"}}>
           <HoverableContainer title="Join">
             <CenteredContainer css={{padding:10}}>
-              <Text css={{color:"white"}}>
+              <RegularText css={{color:"white"}}>
                 Join a friends adventure      
-              </Text>
+              </RegularText>
             </CenteredContainer>
           </HoverableContainer>
         </Link>
@@ -41,9 +41,9 @@ const Homepage = () => {
 
         <HoverableContainer title="Build">
           <CenteredContainer css={{padding:10}}>
-            <Text css={{color:"white"}}>
+            <RegularText css={{color:"white"}}>
               Build items, characters and maps to use in your stories
-            </Text>
+            </RegularText>
           </CenteredContainer>
         </HoverableContainer>
         </Link>
