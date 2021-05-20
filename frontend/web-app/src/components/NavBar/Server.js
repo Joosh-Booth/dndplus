@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { HorizontalFlexContainer } from '@components/containers'
-import Text from '@components/Text'
+import { RegularText } from "@dnd/components/texts"
 
 
 const Server =()=>{
@@ -15,7 +15,7 @@ const Server =()=>{
       }}>
 
       <Link css={{ textDecoration: 'none' }} to="/">  
-        <Text style={{fontWeight:'bold'}}>DnD Plus</Text>
+        <RegularText style={{fontWeight:'bold'}}>DnD Plus</RegularText>
       </Link>
       
     </HorizontalFlexContainer>

@@ -9,7 +9,7 @@ import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
 import { CREATE_USER } from '@components/mutations'
-import Text from "@components/Text"
+import { RegularText } from "@dnd/components/texts"
 
 //put signup form and login form in seperate component that changes state depending on which one is open.
 //clicking logging or signup switches state to other.
@@ -98,40 +98,40 @@ const SignupForm = ({ swap = () => null }) => {
           <VerticalFlexContainer style={{ justifyContent: 'space-around' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <H1 style={{}}>Sign up now</H1>
-              <Text style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Log in</Text>
+              <RegularText style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Log in</RegularText>
             </div>
             <>
-              <Text>Username: </Text>
+              <RegularText>Username: </RegularText>
               <TextInput name="username" onChange={handleChange} onBlur={handleBlur} />
               {touched.username && errors.username
-                ? <Text style={{ fontSize: 14, color: '#ff0000' }}>{errors.username}</Text>
+                ? <RegularText style={{ fontSize: 14, color: '#ff0000' }}>{errors.username}</RegularText>
                 : null
               }
             </>
 
             <>
-              <Text>Email: </Text>
+              <RegularText>Email: </RegularText>
               <TextInput name="email" onChange={handleChange} onBlur={handleBlur} />
               {touched.email && errors.email
-                ? <Text>{errors.email}</Text>
+                ? <RegularText>{errors.email}</RegularText>
                 : null
               }
             </>
 
             <>
-              <Text>Password: </Text>
+              <RegularText>Password: </RegularText>
               <TextInput type="password" name="password" onChange={handleChange} onBlur={handleBlur} />
               {touched.password && errors.password
-                ? <Text>{errors.password}</Text>
+                ? <RegularText>{errors.password}</RegularText>
                 : null
               }
             </>
 
             <>
-              <Text>Confirm Password: </Text>
+              <RegularText>Confirm Password: </RegularText>
               <TextInput type="password" name="passwordConfirmation" onChange={handleChange} onBlur={handleBlur} />
               {touched.passwordConfirmation && errors.passwordConfirmation
-                ? <Text>{errors.passwordConfirmation}</Text>
+                ? <RegularText>{errors.passwordConfirmation}</RegularText>
                 : null
               }
             </>
@@ -142,7 +142,7 @@ const SignupForm = ({ swap = () => null }) => {
           </VerticalFlexContainer>
         </form>
       )}
-    </Formik> : <Text>Success</Text>
+    </Formik> : <RegularText>Success</RegularText>
   );
 }
 

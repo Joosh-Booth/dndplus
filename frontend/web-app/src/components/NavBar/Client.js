@@ -6,7 +6,7 @@ import Button from '@components/Button'
 import { HorizontalFlexContainer } from '@components/containers'
 import { set } from '@components/slices/loginSlice'
 import SignupOrLogin from '@components/SignupOrLogin'
-import Text from '@components/Text'
+import { RegularText } from "@dnd/components/texts"
 
 
 const Client =()=>{
@@ -21,7 +21,7 @@ const Client =()=>{
       }}>
 
       <Link css={{ textDecoration: 'none' }} to="/">  
-        <Text style={{fontWeight:'bold'}}>DnD Plus</Text>
+        <RegularText style={{fontWeight:'bold'}}>DnD Plus</RegularText>
       </Link>
       
       <HorizontalFlexContainer style={{ marginLeft: 'auto'}}>

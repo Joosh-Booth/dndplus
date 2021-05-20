@@ -12,7 +12,7 @@ import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
 import { AUTHENTICATE_USER } from '@components/mutations'
 import { set } from '@components/slices/loginSlice'
-import Text from "@components/Text"
+import { RegularText } from "@dnd/components/texts"
 
 
 
@@ -58,23 +58,23 @@ const LoginForm = ({ swap = () => null }) => {
           <VerticalFlexContainer style={{ justifyContent: 'space-around' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <H1 style={{}}>Log in</H1>
-              <Text style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Sign up</Text>
+              <RegularText style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Sign up</RegularText>
             </div>
 
             <>
-              <Text>Username: </Text>
+              <RegularText>Username: </RegularText>
               <TextInput name="username" onChange={handleChange} onBlur={handleBlur} />
               {touched.username && errors.username
-                ? <Text style={{ fontSize: 14, color: '#ff0000' }}>{errors.username}</Text>
+                ? <RegularText style={{ fontSize: 14, color: '#ff0000' }}>{errors.username}</RegularText>
                 : null
               }
             </>
 
             <>
-              <Text>Password: </Text>
+              <RegularText>Password: </RegularText>
               <TextInput type="password" name="password" onChange={handleChange} onBlur={handleBlur} />
               {touched.password && errors.password
-                ? <Text>{errors.password}</Text>
+                ? <RegularText>{errors.password}</RegularText>
                 : null
               }
             </>
