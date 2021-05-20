@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { baseText } from "@dnd/theme";
+import { modernEraFamily } from "@dnd/theme";
 
 
 const TextInput = styled("input")(
     {
-      fontFamily:baseText,
+      fontFamily:modernEraFamily,
       fontSize:14,
       margin: 0, 
       padding: '12px 17px',
