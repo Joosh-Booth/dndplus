@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { removeAccessToken, AuthWrapper } from '@components/authentication'
 import Button from '@components/Button'
 import { HorizontalFlexContainer } from '@components/containers'
-import { set } from '@components/slices/loginSlice'
+import { setLogin } from '@components/slices/loginSlice'
 import SignupOrLogin from '@components/SignupOrLogin'
 import { RegularText } from "@dnd/components/texts"
 
@@ -30,7 +30,7 @@ const Client =()=>{
           children={
             <Link to="/">
               <Button 
-                onClick={() => { removeAccessToken(); dispatch(set(false)) }}
+                onClick={() => { removeAccessToken(); dispatch(setLogin(false)) }}
                 children={"log out"}
               />
             </Link>

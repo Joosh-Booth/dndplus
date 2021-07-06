@@ -11,7 +11,7 @@ import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import TextInput from "@components/inputs/TextInput"
 import { AUTHENTICATE_USER } from '@components/mutations'
-import { set } from '@components/slices/loginSlice'
+import { setLogin } from '@components/slices/loginSlice'
 import { RegularText } from "@dnd/components/texts"
 
 
@@ -40,7 +40,7 @@ const LoginForm = ({ swap = () => null }) => {
         if (response.data.authenticateUser.__typename === "AuthenticateUserSuccess") {
           setAccessToken(response.data.authenticateUser.token)
           setId(response.data.authenticateUser.user.localId)
-          dispatch(set(true))
+          dispatch(setLogin(true))
           if (location.pathname == "/login") {
             history.replace(from)
           }
