@@ -13,13 +13,11 @@ const Main = () => {
         <Route exact path='/' component={Homepage} />
         <Route exact path='/login' component={Login} />
 
-        <PrivateRoute path='/join_game'>
+        <PrivateRoute path='/*'>
           <JoinCampaign />
-        </PrivateRoute>
-
-        <PrivateRoute path='/create_game'>
           <CreateCampaign />
         </PrivateRoute>
+
       </Switch>
     </>
   );
