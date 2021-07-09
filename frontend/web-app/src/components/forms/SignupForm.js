@@ -96,7 +96,7 @@ const SignupForm = ({ swap = () => null }) => {
       }) => (
         <form onSubmit={handleSubmit}>
           <VerticalFlexContainer style={{ justifyContent: 'space-around' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom:20 }}>
               <H1 style={{}}>Sign up now</H1>
               <RegularText style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Log in</RegularText>
             </div>
