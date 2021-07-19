@@ -44,6 +44,12 @@ const LoginForm = ({ swap = () => null }) => {
           if (location.pathname == "/login") {
             history.replace(from)
           }
+        } else if(response.data.authenticateUser.__typename === "AuthenticateUserError"){
+          if(response.data.authenticateUser.nonFieldErrors.includes("Username and/or password was incorrect"))
+          setErrors({
+            username:response.data.authenticateUser.nonFieldErrors[0],
+            password:response.data.authenticateUser.nonFieldErrors[0]
+          })
         }
       }}>
 
@@ -74,7 +80,7 @@ const LoginForm = ({ swap = () => null }) => {
               <RegularText>Password: </RegularText>
               <TextInput type="password" name="password" onChange={handleChange} onBlur={handleBlur} />
               {touched.password && errors.password
-                ? <RegularText>{errors.password}</RegularText>
+                ? <RegularText style={{ fontSize: 14, color: '#ff0000' }}>{errors.password}</RegularText>
                 : null
               }
             </>
