@@ -1,36 +1,33 @@
-import React, { useState } from "react";
-import { useSelector } from 'react-redux'
 
-import { LoginForm, SignupForm } from '@components/forms'
-import { H1 } from '@components/headers'
-import { selectLogin } from '@components/slices/loginSlice'
-import SSRLimiter from '@components/SSRLimiter'
+import { gql, useQuery } from "@apollo/client";
 
-// Default should show login screen, allows for defined children when unauthenticated
+//Takes in page requested to view. Run query with page and user credentials to see if user is allowed on page. If success show children. 
+//If not show "Authentication failed. Please ensure you are logged in and allowed to view this page."
 
-const DefaultUnauthenticated=()=>{
-  const [form, setForm] = useState('LogIn')
+
+const IS_ALLOWED_ON_PAGE = gql`
+  query IsAllowedOnPage($page: String!){
+    isAllowedOnPage(page: $page)
+  }
+`;
+
+const AuthWrapper = ({page}) => {
+  const { loading, error, data } = useQuery(IS_ALLOWED_ON_PAGE, {
+    variables: {
+      page: page
+    }
+  })
+
+  if(loading) return <div>Loading</div>
 
   return(
-    <div style={{padding:"0 30px 30px 30px"}}>
-      <H1>You must be logged in to view this page</H1>
-      <div style={{width:"40%", paddingTop:30}}>
-      {
-        form==='SignUp'
-          ?<SignupForm swap={()=>setForm('LogIn')}/>
-          :<LoginForm swap={()=>setForm('SignUp')}/>
-      }
-      </div>
+    <div>
+      {data.IsAllowedOnPage 
+        ? <children/> 
+        : <div>"Authentication Failed. Please ensure you are logged in and allowed to view this page" </div>}
+
     </div>
-  )
+  );
 }
 
-
-export const AuthWrapper = ({children, childrenWhenUnauthenticated=<DefaultUnauthenticated/>})=> {
-  const loggedIn = useSelector(selectLogin)
-  return(
-    loggedIn
-      ?children
-      :<SSRLimiter client={childrenWhenUnauthenticated} server={"SERVER"}/>
-  )
-}
+export default AuthWrapper

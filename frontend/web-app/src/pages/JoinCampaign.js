@@ -4,8 +4,7 @@ import { useMutation } from "@apollo/client";
 import { gql } from '@apollo/client';
 import { Formik } from "formik";
 
-import { getAccessToken, getId } from "@components/authentication"
-
+import { getAccessToken, getId, AuthWrapper } from "@components/authentication"
 
 const IS_AUTHENTICATED = gql`
   mutation IsAuthenticated($input:IsAuthenticatedInput!) {
@@ -58,6 +57,7 @@ const JoinCampaign = () => {
             <button type="submit">Test whether a user is logged in</button>
           </form>
           {loggedInState}
+          <AuthWrapper page={"test"}/>
         </div>
       )}
     </Formik>
