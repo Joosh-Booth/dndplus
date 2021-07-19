@@ -8,5 +8,6 @@ export const setId = (id) => { Cookies.set('id', id, { sameSite: 'None', secure:
 export const removeAccessToken = () => { Cookies.remove('token') }
 export const removeId = () => { Cookies.remove('id') }
 
-export { AuthWrapper } from "./AuthWrapper"
+export { LoginWrapper } from "./LoginWrapper"
+export { default as AuthWrapper } from "./AuthWrapper"
 export { PrivateRoute } from "./PrivateRoute"
