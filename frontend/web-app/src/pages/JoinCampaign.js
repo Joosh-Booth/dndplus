@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { gql } from '@apollo/client';
 import { Formik } from "formik";
 
-import { getAccessToken, getId } from "@components/authentication"
+import { getAccessToken, getId, AuthWrapper } from "@components/authentication"
 
 
 const IS_AUTHENTICATED = gql`
@@ -22,6 +22,8 @@ const IS_AUTHENTICATED = gql`
 `;
 
 const JoinCampaign = () => {
+
+
 
   const [loggedInState, setLoggedInState] = useState(null)
   const [isAuthenticated] = useMutation(IS_AUTHENTICATED, {
@@ -50,14 +52,15 @@ const JoinCampaign = () => {
         handleSubmit,
       }) => (
         <div>
-          <Helmet title="DNDPlus | Join game"/>
+          <Helmet title="DNDPlus | Join game" />
           JOIN CAMPAIGN
           <br />
-            Recent Campgaigns | select from your campaigns | join a new campaigns
+          Recent Campgaigns | select from your campaigns | join a new campaigns
           <form onSubmit={handleSubmit}>
             <button type="submit">Test whether a user is logged in</button>
           </form>
           {loggedInState}
+          <AuthWrapper page={"campaign"} params={"F2TGHZG"} />
         </div>
       )}
     </Formik>

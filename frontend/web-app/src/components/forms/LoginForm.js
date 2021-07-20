@@ -11,7 +11,7 @@ import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import { TextInput } from "@components/inputs"
 import { AUTHENTICATE_USER } from '@components/mutations'
-import { set } from '@components/slices/loginSlice'
+import { setLogin } from '@components/slices/loginSlice'
 import { RegularText } from "@dnd/components/texts"
 
 
@@ -40,10 +40,16 @@ const LoginForm = ({ swap = () => null }) => {
         if (response.data.authenticateUser.__typename === "AuthenticateUserSuccess") {
           setAccessToken(response.data.authenticateUser.token)
           setId(response.data.authenticateUser.user.localId)
-          dispatch(set(true))
+          dispatch(setLogin(true))
           if (location.pathname == "/login") {
             history.replace(from)
           }
+        } else if(response.data.authenticateUser.__typename === "AuthenticateUserError"){
+          if(response.data.authenticateUser.nonFieldErrors.includes("Username and/or password was incorrect"))
+          setErrors({
+            username:response.data.authenticateUser.nonFieldErrors[0],
+            password:response.data.authenticateUser.nonFieldErrors[0]
+          })
         }
       }}>
 
@@ -56,7 +62,7 @@ const LoginForm = ({ swap = () => null }) => {
       }) => (
         <form onSubmit={handleSubmit}>
           <VerticalFlexContainer style={{ justifyContent: 'space-around' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom:20 }}>
               <H1 style={{}}>Log in</H1>
               <RegularText style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Sign up</RegularText>
             </div>
@@ -74,7 +80,7 @@ const LoginForm = ({ swap = () => null }) => {
               <RegularText>Password: </RegularText>
               <TextInput type="password" name="password" onChange={handleChange} onBlur={handleBlur} />
               {touched.password && errors.password
-                ? <RegularText>{errors.password}</RegularText>
+                ? <RegularText style={{ fontSize: 14, color: '#ff0000' }}>{errors.password}</RegularText>
                 : null
               }
             </>

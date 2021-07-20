@@ -19,6 +19,36 @@ type AuthenticateUserSuccess {
   token: String!
 }
 
+type Campaign {
+  roomCode: String!
+  title: String!
+  createdBy: User!
+}
+
+type CreateCampaignError {
+  nonFieldErrors: [String!]!
+  fieldErrors: [CreateCampaignInvalidField!]!
+}
+
+enum CreateCampaignFieldName {
+  TITLE
+}
+
+input CreateCampaignInput {
+  title: String!
+}
+
+type CreateCampaignInvalidField {
+  fieldName: CreateCampaignFieldName!
+  errors: [String!]!
+}
+
+union CreateCampaignPayload = CreateCampaignError | CreateCampaignSuccess
+
+type CreateCampaignSuccess {
+  campaign: Campaign!
+}
+
 type CreateUserError {
   nonFieldErrors: [String!]!
   fieldErrors: [CreateUserInvalidField!]!
@@ -62,14 +92,21 @@ type IsAuthenticatedSuccess {
   string: String!
 }
 
+input PageInput {
+  page: String!
+  params: String
+}
+
 type RootMutation {
   createUser(input: CreateUserInput!): CreateUserPayload!
   authenticateUser(input: AuthenticateUserInput!): AuthenticateUserPayload!
   isAuthenticated(input: IsAuthenticatedInput!): IsAuthenticatedPayload!
+  createCampaign(input: CreateCampaignInput!): CreateCampaignPayload!
 }
 
 type RootQuery {
   userByReference(reference: String!): User
+  isAllowedOnPage(input: PageInput!): Boolean!
 }
 
 type User {
