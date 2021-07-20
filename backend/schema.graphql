@@ -92,6 +92,11 @@ type IsAuthenticatedSuccess {
   string: String!
 }
 
+input PageInput {
+  page: String!
+  params: String
+}
+
 type RootMutation {
   createUser(input: CreateUserInput!): CreateUserPayload!
   authenticateUser(input: AuthenticateUserInput!): AuthenticateUserPayload!
@@ -101,7 +106,7 @@ type RootMutation {
 
 type RootQuery {
   userByReference(reference: String!): User
-  isAllowedOnPage(page: String!): Boolean!
+  isAllowedOnPage(input: PageInput!): Boolean!
 }
 
 type User {

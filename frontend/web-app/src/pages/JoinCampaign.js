@@ -6,6 +6,7 @@ import { Formik } from "formik";
 
 import { getAccessToken, getId, AuthWrapper } from "@components/authentication"
 
+
 const IS_AUTHENTICATED = gql`
   mutation IsAuthenticated($input:IsAuthenticatedInput!) {
     isAuthenticated(input: $input) {
@@ -21,6 +22,8 @@ const IS_AUTHENTICATED = gql`
 `;
 
 const JoinCampaign = () => {
+
+
 
   const [loggedInState, setLoggedInState] = useState(null)
   const [isAuthenticated] = useMutation(IS_AUTHENTICATED, {
@@ -49,15 +52,15 @@ const JoinCampaign = () => {
         handleSubmit,
       }) => (
         <div>
-          <Helmet title="DNDPlus | Join game"/>
+          <Helmet title="DNDPlus | Join game" />
           JOIN CAMPAIGN
           <br />
-            Recent Campgaigns | select from your campaigns | join a new campaigns
+          Recent Campgaigns | select from your campaigns | join a new campaigns
           <form onSubmit={handleSubmit}>
             <button type="submit">Test whether a user is logged in</button>
           </form>
           {loggedInState}
-          <AuthWrapper page={"test"}/>
+          <AuthWrapper page={"campaign"} params={"F2TGHZG"} />
         </div>
       )}
     </Formik>

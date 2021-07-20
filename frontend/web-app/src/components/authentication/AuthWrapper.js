@@ -6,24 +6,28 @@ import { gql, useQuery } from "@apollo/client";
 
 
 const IS_ALLOWED_ON_PAGE = gql`
-  query IsAllowedOnPage($page: String!){
-    isAllowedOnPage(page: $page)
+  query IsAllowedOnPage($input: PageInput!){
+    isAllowedOnPage(input: $input)
   }
 `;
 
-const AuthWrapper = ({page}) => {
+const AuthWrapper = ({ page, params }) => {
   const { loading, error, data } = useQuery(IS_ALLOWED_ON_PAGE, {
     variables: {
-      page: page
+      input: {
+        page: page,
+        params: params
+      }
     }
   })
 
-  if(loading) return <div>Loading</div>
+  if (loading) return <div>Loading</div>
 
-  return(
+  return (
     <div>
-      {data.IsAllowedOnPage 
-        ? <children/> 
+      {console.log(data)}
+      {data.isAllowedOnPage
+        ? <children />
         : <div>"Authentication Failed. Please ensure you are logged in and allowed to view this page" </div>}
 
     </div>
