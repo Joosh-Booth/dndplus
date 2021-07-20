@@ -7,13 +7,13 @@ export const loginSlice = createSlice({
     value: Cookies.get('token')?true:false
   },
   reducers:{
-    set: (state, action)=>{
+    setLogin: (state, action)=>{
       state.value = action.payload;
     },
   },
 });
 
-export const { set } = loginSlice.actions;
+export const { setLogin } = loginSlice.actions;
 
 export const selectLogin = state => state.login.value;
 

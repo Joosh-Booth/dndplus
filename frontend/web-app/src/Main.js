@@ -16,7 +16,6 @@ const Main = () => {
         <PrivateRoute path='/join_game'>
           <JoinCampaign />
         </PrivateRoute>
-
         <PrivateRoute path='/create_game'>
           <CreateCampaign />
         </PrivateRoute>

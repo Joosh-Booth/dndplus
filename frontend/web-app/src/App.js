@@ -18,7 +18,7 @@ import { getAccessToken } from '@components/authentication';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    
+    console.log('graphQLErrors', graphQLErrors);
   }
   if (networkError) {
     console.log('networkError', networkError);

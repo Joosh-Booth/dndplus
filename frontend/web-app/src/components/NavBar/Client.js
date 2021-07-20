@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { removeAccessToken, AuthWrapper } from '@components/authentication'
+import { removeAccessToken, LoginWrapper } from '@components/authentication'
 import Button from '@components/Button'
 import { HorizontalFlexContainer } from '@components/containers'
-import { set } from '@components/slices/loginSlice'
+import { setLogin } from '@components/slices/loginSlice'
 import SignupOrLogin from '@components/SignupOrLogin'
 import { RegularText } from "@dnd/components/texts"
 
@@ -25,16 +25,16 @@ const Client =()=>{
       </Link>
       
       <HorizontalFlexContainer style={{ marginLeft: 'auto'}}>
-        <AuthWrapper
+        <LoginWrapper
           childrenWhenUnauthenticated={<SignupOrLogin />}
           children={
             <Link to="/">
               <Button 
-                onClick={() => { removeAccessToken(); dispatch(set(false)) }}
+                onClick={() => { removeAccessToken(); dispatch(setLogin(false)) }}
                 children={"log out"}
               />
             </Link>
-            } //eventually profile
+          } //eventually profile
         />
       </HorizontalFlexContainer>
     </HorizontalFlexContainer>

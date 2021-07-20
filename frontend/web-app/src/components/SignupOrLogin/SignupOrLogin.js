@@ -7,21 +7,21 @@ import { RegularText } from "@dnd/components/texts"
 
 
 const SignupOrLogin = () => {
-  const [modal, setModal] = useState()
+  const [openForm, setOpenForm] = useState()
 
   return (
     <div>
       <CoupledModal
         modalElement={
           <Modal
-            body={modal == 'SignUp' ? <SignupForm swap={() => setModal('LogIn')} /> : <LoginForm swap={() => setModal('SignUp')} />}
+            body={openForm == 'SignUp' ? <SignupForm swap={() => setOpenForm('LogIn')} /> : <LoginForm swap={() => setOpenForm('SignUp')} />}
           />
         }
         element={
           <HorizontalFlexContainer>
-            <RegularText style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={() => setModal('LogIn')}>Log In</RegularText>
+            <RegularText style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={() => setOpenForm('LogIn')}>Log In</RegularText>
             <div css={{ borderLeft: "2px solid #888888", marginRight: 5, marginLeft: 7 }} />
-            <RegularText style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={() => setModal('SignUp')}>Sign up</RegularText>
+            <RegularText style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={() => setOpenForm('SignUp')}>Sign up</RegularText>
           </HorizontalFlexContainer>
         }
 
