@@ -1,9 +1,7 @@
 import re
 from configuration.utils import (tz_now, number_generator)
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
-
 from django.db import models
-
 
 
 class UserManager(BaseUserManager):
@@ -47,6 +45,8 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     email_verified = models.BooleanField(default=False)
     username = models.CharField(max_length=15, null=True, unique=True)
+    campaigns = models.ManyToManyField("campaign.Campaign", null=False)
+
     #status = models.BooleanField(default=True)
     date_of_birth = models.DateField(null=True, blank=True)
     date_joined = models.DateField(default=tz_now)
