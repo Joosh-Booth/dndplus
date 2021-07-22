@@ -26,6 +26,7 @@ const Campaign = ({reference}) => {
     called = true
     console.log("Trueasdadads")
     getCampaign({
+      fetchPolicy: "network-only",
       variables:{
         reference:reference||new URL(location.href).searchParams.get("reference")
       }
