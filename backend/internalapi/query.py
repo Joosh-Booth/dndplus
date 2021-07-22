@@ -12,6 +12,8 @@ class RootQuery(graphene.ObjectType):
     user_by_reference = graphene.Field(User, required=False, reference=graphene.String(required=True))
     is_allowed_on_page = graphene.Boolean(required=True, page=PageInput(required=True,name="input"))
     campaign_by_reference = graphene.Field(Campaign, required=True, reference=graphene.String(required=True))
+    campaign_by_user = graphene.List(Campaign, required=True)
+
 
     def resolve_user_by_reference(root, info, reference):
       return DjangoUser.objects.filter(reference=reference).first()
@@ -24,4 +26,8 @@ class RootQuery(graphene.ObjectType):
     
     def resolve_campaign_by_reference(root, info, reference):
       return DjangoCampaign.objects.filter(reference=reference).first()
+    
+    def resolve_campaign_by_user(root, info):
+      print(info.context.user.campaigns)
+      return info.context.user.campaigns.all()
       

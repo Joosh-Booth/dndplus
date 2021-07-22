@@ -108,6 +108,7 @@ type RootQuery {
   userByReference(reference: String!): User
   isAllowedOnPage(input: PageInput!): Boolean!
   campaignByReference(reference: String!): Campaign!
+  campaignByUser: [Campaign]!
 }
 
 type User {
