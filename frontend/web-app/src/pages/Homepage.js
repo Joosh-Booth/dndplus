@@ -14,7 +14,7 @@ const Homepage = () => {
   return (
     <VerticalFlexContainer >
       <Helmet title="Welcome to DNDPlus" />
-      <HorizontalFlexContainer style={{ justifyContent: 'space-around' }}>
+      <HorizontalFlexContainer style={{ justifyContent: 'space-between', margin:`0px 80px 0px 80px` }}>
 
         <Link to="/create_game" css={{ width: "25%", textDecoration:'none' }}>
           <HoverableContainer

@@ -22,6 +22,4 @@ class JWTMiddleware(object):
             print("Exception in AuthMiddleware raised")
             print(e)
         
-        request.errors= ["test"]
         request.user = auth if auth else AnonymousUser()
-        print("AuthMiddleware ended successfully")

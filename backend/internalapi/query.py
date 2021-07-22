@@ -19,7 +19,6 @@ class RootQuery(graphene.ObjectType):
       return DjangoUser.objects.filter(reference=reference).first()
 
     def resolve_is_allowed_on_page(root, info, page):
-      print(page)
       # get contexr.use.id and check if theyre allowed on page. If page is campaign get campaign reference.
       # 
       return True
@@ -28,6 +27,5 @@ class RootQuery(graphene.ObjectType):
       return DjangoCampaign.objects.filter(reference=reference).first()
     
     def resolve_campaign_by_user(root, info):
-      print(info.context.user.campaigns)
       return info.context.user.campaigns.all()
       

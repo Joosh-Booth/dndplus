@@ -14,7 +14,7 @@ const CAMPGIN_BY_REFERENCE = gql`
 `
 
 
-const Campaign = ({reference}) => {
+const Campaign = () => {
 
   //Check for Campain
   //Check if User is allowed to view campaign
@@ -22,13 +22,13 @@ const Campaign = ({reference}) => {
   
   const [getCampaign,{data, loading, error}] = useLazyQuery(CAMPGIN_BY_REFERENCE)
   const called = false;
-  if(reference || new URL(location.href).searchParams.get("reference")){
+  if(new URL(location.href).searchParams.get("reference")){
     called = true
     console.log("Trueasdadads")
     getCampaign({
       fetchPolicy: "network-only",
       variables:{
-        reference:reference||new URL(location.href).searchParams.get("reference")
+        reference:new URL(location.href).searchParams.get("reference")
       }
     })
   }

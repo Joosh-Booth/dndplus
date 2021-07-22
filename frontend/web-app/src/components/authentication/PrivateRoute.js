@@ -24,7 +24,7 @@ export const PrivateRoute = ({ component, ...rest }) => {
           }
         />
       }
-      server={"SERVER"}
+      
     />
 
   )

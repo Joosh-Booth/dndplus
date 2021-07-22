@@ -12,7 +12,9 @@
       "root": ["./"],
       "alias": {
         "@dnd": "./src",
-        "@components": "./src/components"
+        "@components": "./src/components",
+        "@images": ["./images"]
+
       }
     }]
   ]
