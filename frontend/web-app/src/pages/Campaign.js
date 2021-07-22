@@ -1,16 +1,14 @@
 
 
-import { gql, useQuery } from "@apollo/client"
+import { gql, useLazyQuery } from "@apollo/client"
 import { Redirect, Route } from "react-router"
-
+import { AuthWrapper } from "@dnd/components/authentication"
 
 const CAMPGIN_BY_REFERENCE = gql`
   query CampaignbyReference($reference: String!) {
-    campaignByReference($reference: reference) {
-      campaign { 
-        name
-        reference
-      }
+    campaignByReference(reference: $reference) {
+      title
+      roomCode
     }
   }
 `
@@ -20,15 +18,23 @@ const Campaign = ({reference}) => {
 
   //Check for Campain
   //Check if User is allowed to view campaign
-  const {data, loading, error} = useQuery(CAMPGIN_BY_REFERENCE,{
-    variables:{
-      reference:reference||new URL(location.href).searchParams.get("reference")
-    }
-  })
+//  console.log(reference || new URL(location.href).searchParams.get("reference"))
+  
+  const [getCampaign,{data, loading, error}] = useLazyQuery(CAMPGIN_BY_REFERENCE)
+  const called = false;
+  if(reference || new URL(location.href).searchParams.get("reference")){
+    called = true
+    console.log("Trueasdadads")
+    getCampaign({
+      variables:{
+        reference:reference||new URL(location.href).searchParams.get("reference")
+      }
+    })
+  }
 
-  if (loading) return <div>loading</div>
+  if (called&&loading) return <div>loading</div>
 
-
+  console.log(data)
   return (
     <AuthWrapper page={"campaign"} params={location.search}>
       This should contain campaign data
@@ -36,9 +42,9 @@ const Campaign = ({reference}) => {
   )
 }
 
+export default Campaign
 
-
-<Route
+{/* <Route
   render={({ location }) =>
   (
     <Redirect
@@ -49,4 +55,4 @@ const Campaign = ({reference}) => {
     />
   )
   }
-/>
+/> */}
