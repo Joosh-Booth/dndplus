@@ -4,7 +4,7 @@ import { selectLogin } from '@components/slices/loginSlice'
 import SSRLimiter from '@components/SSRLimiter'
 
 
-export const PrivateRoute = ({ children, ...rest }) => {
+export const PrivateRoute = ({ component, ...rest }) => {
   const loggedIn = useSelector(selectLogin)
 
   return (
@@ -13,7 +13,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
         <Route
           {...rest}
           render={({ location }) =>
-            loggedIn ? (children) : (
+            loggedIn ? (component) : (
               <Redirect
                 to={{
                   pathname: "/login",
