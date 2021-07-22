@@ -107,6 +107,7 @@ type RootMutation {
 type RootQuery {
   userByReference(reference: String!): User
   isAllowedOnPage(input: PageInput!): Boolean!
+  campaignByReference(reference: String!): Campaign!
 }
 
 type User {
