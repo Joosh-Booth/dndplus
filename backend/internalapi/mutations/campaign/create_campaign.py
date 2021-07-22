@@ -43,7 +43,8 @@ class CreateCampaign(graphene.Mutation):
         input_data.created_by = info.context.user
         form = NewCampaignForm(data=input_data)
         if form.is_valid():
-            campaign = form.save()
+            campaign = form.save()            
+            info.context.user.campaigns.add(campaign)
             return CreateCampaignSuccess(campaign=campaign)
 
         field_errors = []
