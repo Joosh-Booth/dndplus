@@ -3,6 +3,9 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from graphql_jwt.decorators import login_required
 from internalapi.definitions.campaign import Campaign
 from campaign.forms.create_invitation import NewInvitationForm
+from campaign.models import Campaign
+from user.models import User
+
 
 class CreateInvitationInput(graphene.InputObjectType):
     sent_to = graphene.String(required=True)
@@ -41,28 +44,50 @@ class CreateInvitation(graphene.Mutation):
 
     @login_required
     def mutate(self, info, input_data):
-        input_data.sent_by = info.context.user
-
-    # MOVE ERRORS UP HERE
-    # MOVE USER AND GAME EXISTS CHECK FROM FORM TO HERE
-    # PASS USER AND GAME OBJECT RATHER THAN NAME
-
-        form = NewInvitationForm(data=input_data)
-        if form.is_valid():
-            invitation = form.save()
-            info.context.user.campaigns.add(campaign)
-            return CreateInvitationSuccess(campaign=campaign)
+        data={}
+        data["sent_by"] =  info.context.user
 
         field_errors = []
         non_field_errors = []
-        for field, errors in form.errors.items():
-            if field == NON_FIELD_ERRORS:
-                non_field_errors.extend(errors)
-                continue
-            field_name = CreateInvitationFieldName.get(field)
+
+        if User.objects.filter(username=input_data.sent_to).exists():
+            sent_to = User.objects.filter(username=input_data.sent_to).first()
+            data["sent_to"]=sent_to
+        else:
             field_errors.append(
-                CreateInvitationInvalidField(field_name=field_name.value, errors=errors)
+                CreateInvitationInvalidField(
+                    field_name=CreateInvitationFieldName.get("sent_to"),
+                    errors="User does not Exist"
+                )
             )
+
+        if Campaign.objects.filter(room_code=input_data.room_code).exists():
+            data["game"] = Campaign.objects.filter(room_code=input_data.room_code).first()
+        else:
+            field_errors.append(
+                CreateInvitationInvalidField(
+                    field_name=CreateInvitationFieldName.get("room_code"),
+                    errors="Game does not Exist"
+                )
+            )
+
+        if not len(field_errors)>0:
+            form = NewInvitationForm(data=data)
+            if form.is_valid():
+                invitation = form.save()
+                data["sent_to"].invitations.add(invitation)
+                
+                return CreateInvitationSuccess(message="Success")
+
+            
+            for field, errors in form.errors.items():
+                if field == NON_FIELD_ERRORS:
+                    non_field_errors.extend(errors)
+                    continue
+                field_name = CreateInvitationFieldName.get(field)
+                field_errors.append(
+                    CreateInvitationInvalidField(field_name=field_name.value, errors=errors)
+                )
 
         return CreateInvitationError(
             non_field_errors=non_field_errors, field_errors=field_errors
