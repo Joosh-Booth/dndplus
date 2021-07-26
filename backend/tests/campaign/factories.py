@@ -8,4 +8,4 @@ class CampaignFactory(factory.django.DjangoModelFactory):
         model = Campaign
 
     title = "Great Campaign Title"
-
+    created_by = factory.SubFactory(UserFactory)

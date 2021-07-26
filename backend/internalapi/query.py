@@ -4,6 +4,7 @@ import graphene
 from campaign.models import Campaign as DjangoCampaign
 from user.models import User as DjangoUser
 from .definitions.campaign import Campaign
+from .definitions.invitation import Invitation
 from .definitions.user import User
 from .definitions.authentication import PageInput
 
@@ -13,7 +14,7 @@ class RootQuery(graphene.ObjectType):
     is_allowed_on_page = graphene.Boolean(required=True, page=PageInput(required=True,name="input"))
     campaign_by_reference = graphene.Field(Campaign, required=True, reference=graphene.String(required=True))
     campaign_by_user = graphene.List(Campaign, required=True)
-    invitations_by_user = graphene.list(Invitation, required=True)
+    invitations_by_user = graphene.List(Invitation, required=True)
 
     def resolve_user_by_reference(root, info, reference):
       return DjangoUser.objects.filter(reference=reference).first()

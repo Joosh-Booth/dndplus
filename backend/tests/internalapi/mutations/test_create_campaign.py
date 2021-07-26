@@ -56,7 +56,7 @@ class TestCreateCampaignMutation:
         assert result["__typename"] == "CreateCampaignSuccess"
         campaign_response = result["campaign"]
         assert campaign_response["title"] =="My sick campaign"
-        assert DjangoCampaign.objects.count() == 0
+        assert DjangoCampaign.objects.count() == 1
 
     def test_create_campaign_fail(self, variable_values, client):
         variable_values['input']['title']="This title is too long too be accepted"
