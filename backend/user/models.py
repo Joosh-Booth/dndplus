@@ -16,7 +16,7 @@ class UserManager(BaseUserManager):
         if not username:
             raise ValueError('A username is required')
 
-        
+
         username = username
         email = self.normalize_email(email)
         user = self.model(username=username,email=email, **extra_fields)
@@ -45,12 +45,13 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     email_verified = models.BooleanField(default=False)
     username = models.CharField(max_length=15, null=True, unique=True)
-    campaigns = models.ManyToManyField("campaign.Campaign", null=False)
+    campaigns = models.ManyToManyField("campaign.Campaign")
+    invitations = models.ManyToManyField("campaign.Invitation")
 
     #status = models.BooleanField(default=True)
     date_of_birth = models.DateField(null=True, blank=True)
     date_joined = models.DateField(default=tz_now)
-    
+
     # Permissions
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
