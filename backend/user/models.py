@@ -25,7 +25,6 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, password, **kwargs):
-        print(username)
         kwargs.update({
             'email': username,
             'username':username,

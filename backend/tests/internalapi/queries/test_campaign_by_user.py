@@ -27,5 +27,4 @@ class TestUserByReferenceQuery:
 
     def test_user_by_reference(self, client, user):
         result = client.execute(self.query)
-        print(result)
         assert len(result['data']) == 2

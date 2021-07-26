@@ -51,7 +51,6 @@ class TestCreateUserMutation:
     def test_create_user(self, variable_values, client):
         assert DjangoUser.objects.count() == 0
         response = client.execute(self.mutation, variable_values=variable_values)
-        print(response)
         result = response["data"]["createUser"]
 
         assert result["__typename"] == "CreateUserSuccess"
@@ -63,7 +62,6 @@ class TestCreateUserMutation:
 
         user_instance = DjangoUser.objects.first()
         assert user_instance.email == variable_input["email"]
-        print("user_instance:"+str(user_instance.email))
         assert user_instance.username == variable_input["username"]
 
         # Check that the user was sent an email when this mutation was successfully ran
