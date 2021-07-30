@@ -7,6 +7,9 @@ const GlobalStyles = () => (
     styles={css`
       html {
         box-sizing: border-box;
+        background: linear-gradient(183deg, white 0%, ${getBackgroundColour(3)} 65%,  ${getBackgroundColour(5)} 100%);
+        min-height:100%;
+        height: auto;
       }
       *,
       *:before,
@@ -15,11 +18,6 @@ const GlobalStyles = () => (
         box-sizing: inherit;
       }
       body,
-      html {
-        
-        background: linear-gradient(183deg, white 0%, ${getBackgroundColour(3)} 65%,  ${getBackgroundColour(5)} 100%);
-        height: 100%
-      }
       body {
         font-size: 16px;
         line-height: 1.4;
