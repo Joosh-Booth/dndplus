@@ -8,6 +8,7 @@ import { VerticalFlexContainer, HorizontalFlexContainer } from '@dnd/components/
 import { CampaignItemCard } from '@dnd/components/CampaignItemCard';
 import { CampaginItem } from "@components/Campaignitem"
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const IS_AUTHENTICATED = gql`
   mutation IsAuthenticated($input:IsAuthenticatedInput!) {
@@ -51,34 +52,31 @@ const JoinCampaign = () => {
       <div>YOUR CAMPAIGNS</div>
       {/* Horizontal container that will hold campagin data */}
 
-      <DetectableOverflow style={{
-        wordWrap:'break-word',
+      <HorizontalFlexContainer style={{
+        borderRadius: 10,
+        borderStyle: "solid",
+        flexFlow:'row wrap',
+        paddingTop:10,
+        overflowY:'hidden',
+        height:450,
+        justifyContent:'space-around'
+      }}>
+        {loading
+          ? <div style={{height:'100vh'}}>Loading</div>
+          : data.campaignByUser.map((item, index) => {
+            campaignCards+=1
 
-      }} onChange={() => {console.log("overflow");setCampaignOverflow(true)}}>
-
-        <HorizontalFlexContainer style={{
-          borderRadius: 10,
-          borderStyle: "solid",
-        }}
-        >
-          {loading
-            ? <div>Loading</div>
-            : data.campaignByUser.map((item, index) => {
-              campaignCards+=1
-              console.log(campaignCards)
-
-              return (campaignOverflow && index ) || !campaignOverflow< campaignCards
-                ?<div style={{ margin: `15px 15px 15px 15px` }} key={item.roomCode}>
+            return index < 8
+              ? <div style={{ margin: `15px 15px 15px 15px` }} key={item.roomCode}>
+                  <Link to={`/campaign?reference=${item.roomCode}`} css={{ textDecoration:'none' }}>
                     <CampaginItem data={item}></CampaginItem>
-                  </div>
-                :null
-              
-            })
-          }
-
-
-        </HorizontalFlexContainer>
-      </DetectableOverflow>
+                  </Link>
+                </div>
+              :null
+          
+          })
+        }
+      </HorizontalFlexContainer>
 
       <div>INVITATIONS</div>
       <AuthWrapper page={"campaign"} params={"F2TGHZG"} />
