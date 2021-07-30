@@ -7,8 +7,8 @@
     "module": "es2015",
     "baseUrl": "src",
     "paths": {
-      "@dnd/*": ["./*"],
       "@components/*": ["./components/*"],
+      "@dnd/*": ["./*"],
       "@images/*": ["./images/*"]
 
     }
