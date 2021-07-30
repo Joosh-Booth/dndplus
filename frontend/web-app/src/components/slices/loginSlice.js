@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import Cookies from 'js-cookie';
 
 export const loginSlice = createSlice({
   name: 'login',
   initialState:{
-    value: Cookies.get('token')?true:false
+    value: localStorage.getItem('token')?true:false
   },
   reducers:{
     setLogin: (state, action)=>{
