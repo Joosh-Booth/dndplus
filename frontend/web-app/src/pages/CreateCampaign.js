@@ -5,7 +5,7 @@ import { VerticalFlexContainer, HorizontalFlexContainer } from '@components/cont
 import { TextInput } from '@components/inputs'
 import { CREATE_CAMPAGIN } from '@components/mutations'
 import { RegularText } from '@components/texts'
-import Button from '@components/Button'
+import { Button } from '@components/buttons'
 
 //run is authenticated on page load - Hook ?
 const CreateCampaign = () => {

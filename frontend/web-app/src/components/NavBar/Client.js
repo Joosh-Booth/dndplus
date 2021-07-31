@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { removeAccessToken, LoginWrapper } from '@components/authentication'
-import Button from '@components/Button'
+import { Button } from '@components/buttons'
 import { HorizontalFlexContainer } from '@components/containers'
 import { setLogin } from '@components/slices/loginSlice'
 import SignupOrLogin from '@components/SignupOrLogin'

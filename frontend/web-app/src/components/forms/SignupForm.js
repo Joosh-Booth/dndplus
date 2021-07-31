@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { mixed } from "yup";
 
-import Button from "@components/Button"
+import { Button } from "@components/buttons"
 import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import { TextInput } from "@components/inputs"
