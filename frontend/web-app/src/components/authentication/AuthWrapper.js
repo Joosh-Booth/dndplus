@@ -26,7 +26,7 @@ const AuthWrapper = ({ page, params, children }) => {
 
   return (
     <div>
-      {data.isAllowedOnPage
+      {data&&data.isAllowedOnPage
         ? children
         : <div>"Authentication Failed. Please ensure you are logged in and allowed to view this page" </div>}
 

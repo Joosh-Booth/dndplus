@@ -63,7 +63,7 @@ const JoinCampaign = () => {
       }}>
         {loading
           ? <div style={{height:'100vh'}}>Loading</div>
-          : data.campaignByUser.map((item, index) => {
+          : data && data.campaignByUser.map((item, index) => {
             campaignCards+=1
 
             return index < 8
@@ -79,7 +79,7 @@ const JoinCampaign = () => {
       </HorizontalFlexContainer>
 
       <div>INVITATIONS</div>
-      <AuthWrapper page={"campaign"} params={"F2TGHZG"} />
+      {/* <AuthWrapper page={"campaign"} params={"F2TGHZG"} /> */}
     </VerticalFlexContainer>
   )
 };
