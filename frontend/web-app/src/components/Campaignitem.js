@@ -1,6 +1,6 @@
 import { VerticalFlexContainer } from "@components/containers"
 import { RegularText } from "@components/texts"
-import { H3 } from "@components/headers"
+import { H4 } from "@components/headers"
 import DnD from "@images/DnD.bmp"
 import styled from "@emotion/styled";
 import { css, keyframes } from "@emotion/react"
@@ -63,17 +63,13 @@ export const CampaginItem = ({ data }) => {
           // `
         ]}
         >
-
-          <H3 
-            style={{paddingTop:15, lineHeight:1, color:'aliceblue'}}>My Very Epic Cool Campaign
-          </H3>
-
+          <H4 style={{paddingTop:15, lineHeight:1, color:'aliceblue'}}>{data.title}</H4>
         </VerticalFlexContainer>
 
-        <H3 style={{marginTop:5, }}>
+        <H4 style={{marginTop:5, }}>
           Dungeons and Dragons of Doom
           {/* {data.title} */}
-        </H3>
+        </H4>
 
       </VerticalFlexContainer>
       <RegularText>

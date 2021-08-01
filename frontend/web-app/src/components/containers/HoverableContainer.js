@@ -1,5 +1,5 @@
 import { VerticalFlexContainer, CenteredContainer } from '@components/containers'
-import { H1 } from '@components/headers'
+import { H2 } from '@components/headers'
 import { textOutline } from '@dnd/theme'
 import styled from "@emotion/styled";
 
@@ -28,7 +28,7 @@ const HoverableContainer = ({ children, outterCss, title, titleCss, innerCss }) 
 
   return (
     <ParentContainer>
-      <H1
+      <H2
         css={{
           textTransform: 'uppercase',
           paddingLeft: 20,
@@ -41,19 +41,19 @@ const HoverableContainer = ({ children, outterCss, title, titleCss, innerCss }) 
         }}
       >
         {title}
-      </H1>
+      </H2>
 
       <CenteredContainer
         css={{
           height: '100%',
           width: '100%',
           opacity: 0,
-          paddingTop: 55,
+          paddingTop: 70,
           backgroundColor: "transparent",
           borderRadius: 20,
           ":hover": {
             opacity: 100,
-            backgroundColor: "rgba(0,0,0,.8)",
+            backgroundColor: "rgba(0,0,0,.6)",
           },
           transition: "background-color 450ms ease, opacity 350ms ease",
           ...innerCss
