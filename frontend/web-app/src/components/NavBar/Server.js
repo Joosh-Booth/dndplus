@@ -2,16 +2,21 @@ import { Link } from 'react-router-dom'
 
 import { HorizontalFlexContainer } from '@components/containers'
 import { RegularText } from "@dnd/components/texts"
+import { getBackgroundColour } from '@dnd/theme'
 
 
 const Server =()=>{
   return (
     <HorizontalFlexContainer 
       style={{ 
+        position:'sticky',
+        top:0,
+        width:'100%',
         boxShadow:'0px 0px 10px 1px #cccccc',
         padding:`10px 30px`,
         margin:`0px 0px 50px 0px`,
-        alignItems:'center'
+        alignItems:'center',
+        background:`${getBackgroundColour(2)}`
       }}>
 
       <Link css={{ textDecoration: 'none' }} to="/">  
