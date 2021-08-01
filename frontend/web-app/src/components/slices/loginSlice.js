@@ -3,7 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 export const loginSlice = createSlice({
   name: 'login',
   initialState:{
-    value: localStorage.getItem('token')?true:false
+    value: (typeof window == 'undefined' 
+      ? false 
+      : localStorage.getItem('token')
+        ? true 
+        : false)
   },
   reducers:{
     setLogin: (state, action)=>{
