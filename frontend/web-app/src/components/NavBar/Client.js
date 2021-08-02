@@ -18,11 +18,11 @@ const Client =()=>{
         position:'sticky',
         top:0,
         width:'100%',
-        boxShadow:'0px 0px 10px 1px #cccccc',
+        boxShadow:'0px 0px 10px 0px rgba(12,121,204,0.88)',
         padding:`10px 30px`,
         margin:`0px 0px 50px 0px`,
         alignItems:'center',
-        background:`${getBackgroundColour(2)}`
+        background:`#282424`
       }}>
 
       <Link css={{ textDecoration: 'none' }} to="/">  

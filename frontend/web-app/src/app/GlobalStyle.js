@@ -7,7 +7,7 @@ const GlobalStyles = () => (
     styles={css`
       html {
         box-sizing: border-box;
-        background: linear-gradient(183deg, white 0%, ${getBackgroundColour(3)} 65%,  ${getBackgroundColour(5)} 100%);
+        background: #282424;
         min-height:100%;
         height: auto;
       }

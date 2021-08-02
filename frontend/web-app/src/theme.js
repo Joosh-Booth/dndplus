@@ -11,7 +11,7 @@ export const baseText = css({
   fontFamily: modernEraFamily,
   fontWeight: 500,
   fontSize: "16px",
-  color: "#555555",
+  color: "#E4E6F0",
   lineHeight: "24px",
   WebkitFontSmoothing: "antialiased",
 });
