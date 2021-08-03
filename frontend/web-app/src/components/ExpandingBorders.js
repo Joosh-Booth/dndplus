@@ -44,7 +44,7 @@ const ExpandingBorders = ({active=false, top=false, right=false, bottom=false, l
 
       {top&&<TopBottom css={{
         width:"75%",
-        borderTop:'1px solid black',  
+        borderTop:'1px solid #366eb3',  
         top:0,
         left:0,
         right:0, 
@@ -52,7 +52,7 @@ const ExpandingBorders = ({active=false, top=false, right=false, bottom=false, l
 
       {bottom&&<TopBottom css={{
         width:"75%",
-        borderBottom:'1px solid black',  
+        borderBottom:'1px solid #366eb3',  
         bottom:0,
         left:0,
         right:0, 
@@ -60,7 +60,7 @@ const ExpandingBorders = ({active=false, top=false, right=false, bottom=false, l
 
       {left&&<LeftRight css={{
         height:'50%', 
-        borderLeft:'1px solid black', 
+        borderLeft:'1px solid #366eb3', 
         left:0,
         top:0, 
         bottom:0,
@@ -68,7 +68,7 @@ const ExpandingBorders = ({active=false, top=false, right=false, bottom=false, l
 
       {right&&<LeftRight css={{
         height:'50%',
-        borderRight:'1px solid black', 
+        borderRight:'1px solid #366eb3', 
         right:0,
         top:0, 
         bottom:0,
