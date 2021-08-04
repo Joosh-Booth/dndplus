@@ -10879,7 +10879,7 @@ react-hotkeys@2.0.0:
 
 react-icons-kit@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.npmjs.org/react-icons-kit/-/react-icons-kit-2.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-icons-kit/-/react-icons-kit-2.0.0.tgz#9d605c687a79422705a863b5cbcf36b9892a3cc9"
   integrity sha512-3vgaRrmJrAkRfaxBknyWJVdokvq4n8O0LexrH3hTkV2aMTxtW7VwP9MsD6BZYGC1EkVJL2GpDK8viaa4fgQejg==
   dependencies:
     camel-case "^3.0.0"
