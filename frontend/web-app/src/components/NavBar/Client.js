@@ -22,7 +22,8 @@ const Client =()=>{
         padding:`10px 30px`,
         margin:`0px 0px 50px 0px`,
         alignItems:'center',
-        background:`#282424`
+        background:`#282424`,
+        zIndex:1
       }}>
 
       <Link css={{ textDecoration: 'none' }} to="/">  
