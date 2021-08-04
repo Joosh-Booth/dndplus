@@ -1,10 +1,12 @@
-import { VerticalFlexContainer, CenteredContainer } from '@components/containers'
-import { H2 } from '@components/headers'
-import { textOutline } from '@dnd/theme'
+import { Icon } from 'react-icons-kit'
 import styled from "@emotion/styled";
+import { VerticalFlexContainer, CenteredContainer } from '@components/containers'
+import ExpandingBorders from '@components/ExpandingBorders';
+import { H2 } from '@components/headers'
+import { RegularText } from '@components/texts';
 
 
-const HoverableContainer = ({ children, outterCss, title, titleCss, innerCss }) => {
+const HoverableContainer = ({ outterCss, title, text, icon }) => {
 
   const ParentContainer = styled.div({
     display: "flex",
@@ -27,7 +29,57 @@ const HoverableContainer = ({ children, outterCss, title, titleCss, innerCss }) 
   });
 
   return (
-    <ParentContainer>
+    <VerticalFlexContainer css={{
+      height:500,
+      borderStyle:'solid',
+      textAlign:'center',
+      position:'relative',
+      alignItems: 'center',
+      justifyContent:'space-around',
+      border:'1px solid rgba(0,0,0,0)',
+      [`&:hover ${H2}`]:{
+        transform:'translate3d(0,65%,0);',
+        color:'#366eb3'
+      },
+      [`&:hover ${RegularText}`]:{
+        transform:'translate3d(0,-65%,0);',
+        color:'#366eb3'
+      },
+      [`&:hover ${CenteredContainer}`]:{
+        color:'#366eb3',
+      },
+    }}>
+      <H2 css={{
+        paddingTop:25,
+        lineHeight:1,
+        transition:'transform 300ms ease, color 250ms ease'
+      }}>
+        {title}
+      </H2>
+      <CenteredContainer css={{
+        color: "#E4E6F0",
+        justifyContent: 'center',
+        marginBottom:20, 
+        height:'25%',
+        width:'25%',
+        transition:'color 250ms ease',
+      }}>
+        <Icon icon={icon} size='100%'/>
+      </CenteredContainer>
+      <RegularText css={{
+        paddingBottom:25,
+        transition:'transform 300ms ease, color 250ms ease'
+      }}>
+        {text}
+      </RegularText>
+      <ExpandingBorders top bottom left right fadeIn height="25%" width="50%"/>
+    </VerticalFlexContainer>
+  )
+}
+
+export default HoverableContainer
+
+{/* <ParentContainer>
       <H2
         css={{
           textTransform: 'uppercase',
@@ -68,8 +120,4 @@ const HoverableContainer = ({ children, outterCss, title, titleCss, innerCss }) 
           {children}
         </VerticalFlexContainer>
       </CenteredContainer>
-    </ParentContainer>
-  )
-}
-
-export default HoverableContainer
+    </ParentContainer> */}
