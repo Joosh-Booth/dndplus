@@ -115,8 +115,8 @@ const Campaign = () => {
     },
   ]
 
-
   if (loading) return <div>Loading</div>
+  //Check to send user error if game doesnt exist
 
   return (
     <AuthWrapper page={"campaign"} params={reference}>
