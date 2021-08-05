@@ -10,7 +10,6 @@ const ExpandingBorders = ({
   height="50%",
   fadeIn=false
 }) =>{
-  console.log(fadeIn)
   const TopBottom = styled.div({
     opacity:fadeIn&&0,
     position:'absolute',
