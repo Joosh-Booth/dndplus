@@ -4,8 +4,12 @@ from django.db import models
 from configuration.utils import tz_now
 from user.models import User
 
+
+def room_code_gen():
+    return uuid.uuid4().hex[:7].upper()
+
 class Campaign(models.Model):
-    room_code = models.CharField(max_length=7, unique=True, default=uuid.uuid4().hex[:7].upper())
+    room_code = models.CharField(max_length=7, unique=True, default=room_code_gen)
     title = models.CharField(max_length=30, blank=False)
     created_at = models.DateField(default=tz_now)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)

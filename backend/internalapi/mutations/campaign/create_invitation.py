@@ -76,6 +76,7 @@ class CreateInvitation(graphene.Mutation):
             if form.is_valid():
                 invitation = form.save()
                 data["sent_to"].invitations.add(invitation)
+                data["sent_by"].invitations.add(invitation)
                 
                 return CreateInvitationSuccess(message="Success")
 
