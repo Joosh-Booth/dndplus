@@ -1,10 +1,11 @@
 import pytest
 
+from tests.campaign.factories import CampaignFactory
 from tests.user.factories import UserFactory
 
 
 @pytest.mark.django_db
-class TestUserByReferenceQuery:
+class TestCampaignByUserQuery:
 
     query = '''
         query testCampaignByUser {
@@ -15,9 +16,6 @@ class TestUserByReferenceQuery:
         }
     '''
 
-    @pytest.fixture
-    def client(self, graphql_client_factory, user):
-        return graphql_client_factory(user=user)
 
     @pytest.fixture
     def user(self):
@@ -25,6 +23,20 @@ class TestUserByReferenceQuery:
             username="noob"
         )
 
-    def test_user_by_reference(self, client, user):
+    @pytest.fixture
+    def client(self, graphql_client_factory, user):
+        return graphql_client_factory(user=user)
+
+    @pytest.fixture
+    def game(self, user):
+        c1 = CampaignFactory(created_by=user)
+        c2 = CampaignFactory(created_by=user)
+        user.campaigns.add(c1)
+        user.campaigns.add(c2)
+
+        return c1,c2
+
+    def test_campaign_by_user(self, client, user, game):
         result = client.execute(self.query)
-        assert len(result['data']) == 2
+        print(result)
+        assert len(result['data']['campaignByUser']) == 2

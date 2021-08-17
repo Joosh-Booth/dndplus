@@ -59,7 +59,6 @@ class TestCreateInvitation:
         response = client.execute(self.mutation, variable_values=variable_values)
         result = response["data"]["createInvitation"]
         assert result["__typename"] == "CreateInvitationSuccess"
-        
         assert user[1].invitations.filter(sent_by=user[0]).count() == 1
 
     def test_create_invite_failure_cannot_invite_self(self, variable_values, client, user):
