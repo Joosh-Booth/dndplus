@@ -33,7 +33,6 @@ class RootQuery(graphene.ObjectType):
       return info.context.user.invitations.all()
 
 def page_authentication(page, user):
-    print(page.params)
     if page.page == "campaign":
         if user.campaigns.filter(room_code=page.params).exists():
             return True

@@ -23,6 +23,7 @@ type Campaign {
   roomCode: String!
   title: String!
   createdBy: User!
+  players: [User]
 }
 
 type CreateCampaignError {
@@ -47,6 +48,32 @@ union CreateCampaignPayload = CreateCampaignError | CreateCampaignSuccess
 
 type CreateCampaignSuccess {
   campaign: Campaign!
+}
+
+type CreateInvitationError {
+  nonFieldErrors: [String!]!
+  fieldErrors: [CreateInvitationInvalidField!]!
+}
+
+enum CreateInvitationFieldName {
+  SENT_TO
+  ROOM_CODE
+}
+
+input CreateInvitationInput {
+  sentTo: String!
+  roomCode: String!
+}
+
+type CreateInvitationInvalidField {
+  fieldName: CreateInvitationFieldName!
+  errors: [String!]!
+}
+
+union CreateInvitationPayload = CreateInvitationError | CreateInvitationSuccess
+
+type CreateInvitationSuccess {
+  message: String
 }
 
 type CreateUserError {
@@ -77,6 +104,12 @@ type CreateUserSuccess {
   user: User!
 }
 
+type Invitation {
+  sentBy: User!
+  sentTo: User!
+  game: Campaign!
+}
+
 type IsAuthenticatedError {
   errors: [String!]!
 }
@@ -102,13 +135,15 @@ type RootMutation {
   authenticateUser(input: AuthenticateUserInput!): AuthenticateUserPayload!
   isAuthenticated(input: IsAuthenticatedInput!): IsAuthenticatedPayload!
   createCampaign(input: CreateCampaignInput!): CreateCampaignPayload!
+  createInvitation(input: CreateInvitationInput!): CreateInvitationPayload!
 }
 
 type RootQuery {
   userByReference(reference: String!): User
   isAllowedOnPage(input: PageInput!): Boolean!
-  campaignByReference(reference: String!): Campaign!
+  campaignByReference(reference: String!): Campaign
   campaignByUser: [Campaign]!
+  invitationsByUser: [Invitation]!
 }
 
 type User {
