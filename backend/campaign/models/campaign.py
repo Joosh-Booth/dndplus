@@ -12,7 +12,8 @@ class Campaign(models.Model):
     room_code = models.CharField(max_length=7, unique=True, default=room_code_gen)
     title = models.CharField(max_length=30, blank=False)
     created_at = models.DateField(default=tz_now)
-    created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="created_by")
+    owner = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="owner")
 
     def save(self, *args, **kwargs):
         chars = list(range(48,57))+list(range(65,90))

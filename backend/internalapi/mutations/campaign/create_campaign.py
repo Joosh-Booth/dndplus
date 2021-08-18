@@ -41,6 +41,7 @@ class CreateCampaign(graphene.Mutation):
     @login_required
     def mutate(self, info, input_data):
         input_data.created_by = info.context.user
+        input_data.owner = info.context.user
         form = NewCampaignForm(data=input_data)
         if form.is_valid():
             campaign = form.save()            
