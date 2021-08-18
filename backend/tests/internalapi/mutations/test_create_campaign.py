@@ -18,6 +18,9 @@ class TestCreateCampaignMutation:
                     campaign {
                         title
                         roomCode
+                        createdBy{
+                            username
+                        }
                     }
                 }
                 ... on CreateCampaignError {
@@ -51,12 +54,14 @@ class TestCreateCampaignMutation:
     def test_create_campaign_success(self, variable_values, client, user):
         assert DjangoCampaign.objects.count() == 0
         response = client.execute(self.mutation, variable_values=variable_values)
+        print(response)
         result = response["data"]["createCampaign"]
 
         assert result["__typename"] == "CreateCampaignSuccess"
         campaign_response = result["campaign"]
         assert campaign_response["title"] =="My sick campaign"
-        assert DjangoCampaign.objects.count() == 1
+        print(campaign_response["createdBy"])
+        assert DjangoCampaign.objects.count() == 0
 
     def test_create_campaign_fail(self, variable_values, client):
         variable_values['input']['title']="This title is too long too be accepted"
