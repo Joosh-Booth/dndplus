@@ -23,7 +23,9 @@ type Campaign {
   roomCode: String!
   title: String!
   createdBy: User!
+  owner: User!
   players: [User]
+  isOwner: Boolean!
 }
 
 type CreateCampaignError {
@@ -125,17 +127,42 @@ type IsAuthenticatedSuccess {
   string: String!
 }
 
+type LeaveCampaignError {
+  nonFieldErrors: [String!]!
+  fieldErrors: [LeaveCampaignInvalidField!]!
+}
+
+enum LeaveCampaignFieldName {
+  REFERENCE
+}
+
+input LeaveCampaignInput {
+  reference: String!
+}
+
+type LeaveCampaignInvalidField {
+  fieldName: LeaveCampaignFieldName!
+  errors: [String!]!
+}
+
+union LeaveCampaignPayload = LeaveCampaignError | LeaveCampaignSuccess
+
+type LeaveCampaignSuccess {
+  message: String!
+}
+
 input PageInput {
   page: String!
   params: String
 }
 
 type RootMutation {
-  createUser(input: CreateUserInput!): CreateUserPayload!
   authenticateUser(input: AuthenticateUserInput!): AuthenticateUserPayload!
-  isAuthenticated(input: IsAuthenticatedInput!): IsAuthenticatedPayload!
   createCampaign(input: CreateCampaignInput!): CreateCampaignPayload!
   createInvitation(input: CreateInvitationInput!): CreateInvitationPayload!
+  createUser(input: CreateUserInput!): CreateUserPayload!
+  leaveCampaign(input: LeaveCampaignInput!): LeaveCampaignPayload!
+  isAuthenticated(input: IsAuthenticatedInput!): IsAuthenticatedPayload!
 }
 
 type RootQuery {
