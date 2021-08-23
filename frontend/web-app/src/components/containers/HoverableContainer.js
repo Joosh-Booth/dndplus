@@ -1,4 +1,3 @@
-import { Icon } from 'react-icons-kit'
 import styled from "@emotion/styled";
 import { VerticalFlexContainer, CenteredContainer } from '@components/containers'
 import ExpandingBorders from '@components/ExpandingBorders';
@@ -65,7 +64,7 @@ const HoverableContainer = ({ outterCss, title, text, icon }) => {
         width:'25%',
         transition:'color 250ms ease',
       }}>
-        <Icon icon={icon} size='100%'/>
+        {icon}
       </CenteredContainer>
       <RegularText css={{
         paddingBottom:25,
