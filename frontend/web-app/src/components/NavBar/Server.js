@@ -16,7 +16,7 @@ const Server =()=>{
         padding:`10px 30px`,
         margin:`0px 0px 50px 0px`,
         alignItems:'center',
-        background:`${getBackgroundColour(2)}`
+        background:`${getBackgroundColour(1)}`
       }}>
 
       <Link css={{ textDecoration: 'none' }} to="/">  

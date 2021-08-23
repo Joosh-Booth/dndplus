@@ -4,6 +4,7 @@ import { VerticalFlexContainer, CenteredContainer } from '@components/containers
 import ExpandingBorders from '@components/ExpandingBorders';
 import { H2 } from '@components/headers'
 import { RegularText } from '@components/texts';
+import { getBorderColour } from "@dnd/theme";
 
 
 const HoverableContainer = ({ outterCss, title, text, icon }) => {
@@ -39,14 +40,14 @@ const HoverableContainer = ({ outterCss, title, text, icon }) => {
       border:'1px solid rgba(0,0,0,0)',
       [`&:hover ${H2}`]:{
         transform:'translate3d(0,65%,0);',
-        color:'#366eb3'
+        color:`${getBorderColour(2)}`
       },
       [`&:hover ${RegularText}`]:{
         transform:'translate3d(0,-65%,0);',
-        color:'#366eb3'
+        color:`${getBorderColour(2)}`
       },
       [`&:hover ${CenteredContainer}`]:{
-        color:'#366eb3',
+        color:`${getBorderColour(2)}`,
       },
     }}>
       <H2 css={{

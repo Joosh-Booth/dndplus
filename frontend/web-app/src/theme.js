@@ -36,15 +36,20 @@ export const PALETTE={
     5:"#d9b99b",
   },
   grey:{
-    1:'#AAA9AD',
-    2:'#848689',
-    3:'#5B676D',
-    4:'#2A3439',
-    5:'#1F262A',
+    1:'#282424',
+    2:'#615757',
+  },
+  blue:{
+    1:'#1D3C61',
+    2:'#366eb3',
+    3:'#3C7AC7',
+    4:'#438AE0',
+    5:'#4792ED',
   }
 }
 
 export const getColorTint = (color, index = 3) => PALETTE[color][index];
 
-export const getBackgroundColour = (index) => getColorTint("beige", index)
+export const getBackgroundColour = (index) => getColorTint("grey", index)
 export const getButtonColour = (index) => getColorTint("grey", index)
+export const getBorderColour = (index) => getColorTint("blue", index)

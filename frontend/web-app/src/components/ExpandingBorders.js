@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { getBorderColour } from "@dnd/theme";
 
 const ExpandingBorders = ({
   active=false, 
@@ -56,10 +57,10 @@ const ExpandingBorders = ({
       }
     }}
     >
-      {top&&<TopBottom css={{borderTop:'1px solid #366eb3', top:0, left:0, right:0}}/>}
-      {bottom&&<TopBottom css={{borderBottom:'1px solid #366eb3', bottom:0, left:0, right:0}}/>}
-      {left&&<LeftRight css={{ borderLeft:'1px solid #366eb3', left:0, top:0, bottom:0}}/>}
-      {right&&<LeftRight css={{ borderRight:'1px solid #366eb3', right:0, top:0, bottom:0}}/>}
+      {top&&<TopBottom css={{borderTop:`1px solid ${getBorderColour(2)}`, top:0, left:0, right:0}}/>}
+      {bottom&&<TopBottom css={{borderBottom:`1px solid ${getBorderColour(2)}`, bottom:0, left:0, right:0}}/>}
+      {left&&<LeftRight css={{ borderLeft:`1px solid ${getBorderColour(2)}`, left:0, top:0, bottom:0}}/>}
+      {right&&<LeftRight css={{ borderRight:`1px solid ${getBorderColour(2)}`, right:0, top:0, bottom:0}}/>}
     </div>
   )
 }
