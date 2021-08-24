@@ -50,6 +50,9 @@ class LeaveCampaign(graphene.Mutation):
             if campaign.owner == info.context.user:
                 campaign.delete()
 
+            elif campaign.user_set.count()<1:
+                campaign.delete()
+
             return LeaveCampaignSuccess(message="success")
         print("fail")
         # field_errors = []
