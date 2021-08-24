@@ -38,6 +38,7 @@ export const PALETTE={
   grey:{
     1:'#282424',
     2:'#615757',
+    3:'#1b1b1c'
   },
   blue:{
     1:'#1D3C61',

@@ -2,6 +2,7 @@ import React from "react";
 import CloseButton from '../CloseButton'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import { getBackgroundColour } from "@dnd/theme";
 
 function getModalStyle() {
   const top = 50 
@@ -24,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: `calc(100% - ${10})`,
     padding: 20,
     boxSizing: "border-box",
-    backgroundColor: "#FFF",
-    borderRadius: props.fullPage ? 0 : 20,
+    backgroundColor: `${getBackgroundColour(1)}`,
+    borderRadius: props.fullPage ? 0 : 10,
     outline: 0,
     display:'auto'
   }),
