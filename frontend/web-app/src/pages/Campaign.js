@@ -1,22 +1,26 @@
 
 
 import { useRef, useState } from "react"
-import { gql, useLazyQuery } from "@apollo/client"
+import { gql, useLazyQuery, useMutation } from "@apollo/client"
 import { Redirect, Route } from "react-router"
+import { useHistory } from "react-router-dom";
 
 import { AuthWrapper } from "@components/authentication"
-import { HeaderButton } from "@components/buttons"
+import { LeaveCampaignButton, LaunchCampaignButton, Button } from "@components/buttons"
 import { HorizontalFlexContainer, VerticalFlexContainer } from "@components/containers"
-import { H1, H3 } from "@components/headers"
+import { H1, H3, H4 } from "@components/headers"
 import PlayersList from "@components/PlayersList"
 import { Sections } from "@components/sections"
 import { RegularText } from "@components/texts"
 import DnD from "@images/DnD.bmp"
+import { CoupledModal, Modal } from "@components/Modals"
+import { getBackgroundColour } from "@dnd/theme";
 
-const CAMPGIN_BY_REFERENCE = gql`
+
+const CAMPAIGN_BY_REFERENCE = gql`
   query CampaignbyReference($reference: String!) {
     campaignByReference(reference: $reference) {
-      owner
+      isOwner
       title
       roomCode
       players{
@@ -26,11 +30,43 @@ const CAMPGIN_BY_REFERENCE = gql`
   }
 `
 
+const LEAVE_CAMPAIGN = gql`
+  mutation LeaveCampaign($input:LeaveCampaignInput!) {
+    leaveCampaign(input: $input) {
+      __typename
+      ... on LeaveCampaignSuccess{
+        message
+      }
+      ... on LeaveCampaignError{
+        fieldErrors{
+          fieldName
+          errors
+        }
+        nonFieldErrors
+      } 
+    }
+  }
+`
+
 
 const Campaign = () => {
-  const [getCampaign, { data, loading, error }] = useLazyQuery(CAMPGIN_BY_REFERENCE)
+  const [getCampaign, { data, loading, error }] = useLazyQuery(CAMPAIGN_BY_REFERENCE)
+  const [leaveCampaign] = useMutation(LEAVE_CAMPAIGN)
+
   const [called, setCalled] = useState(false)
   const reference = new URL(location.href).searchParams.get("reference")
+
+  const [leaveCampaignModal, setLeaveCampaignModal] = useState(false)
+
+  let history = useHistory();
+  const handleLeaveCampaign = async () => {
+    let response = await leaveCampaign({
+      variables: { input: { roomCode: reference } }
+    })
+    if (response.data.leaveCampaign.__typename === "LeaveCampaignSuccess") {
+      history.push('join_game', null)
+    }
+  }
 
   if (reference && !called) {
     setCalled(true)
@@ -126,9 +162,10 @@ const Campaign = () => {
   return (
     <AuthWrapper page={"campaign"} params={reference}>
       <div style={{ margin: '80px 80px' }}>
+        {data && data.campaignByReference.isOwner && "This is all true"}
         <HorizontalFlexContainer style={{ height: "45vh", marginBottom: 150 }}>
           {/* Image and Button */}
-          <VerticalFlexContainer style={{ width: "45%" }}>
+          <VerticalFlexContainer style={{ width: "45%", position: 'relative', justifyContent: 'space-around' }}>
             <div style={{
               height: '100%',
               width: '100%',
@@ -138,26 +175,29 @@ const Campaign = () => {
               borderRadius: 10,
             }} />
 
-            <div css={{
-              textAlign: 'center',
-              borderRadius: 2,
-              backgroundColor: '#475737',
-              marginTop: 10,
-              width: '40%',
-              alignSelf: 'center',
-              border: '1px solid #366eb3',
-              ':hover': {
-                boxShadow: '0px 0px 5px 0px rgba(12,121,204,0.88)'
+            <HorizontalFlexContainer style={{ justifyContent: 'space-around', margin: 5, }}>
+              <LaunchCampaignButton />
 
-              },
-              ':active': {
-                transition: 'box-shadow 0ms ease',
-                boxShadow: 'inset 0 -1px 3px rgba(0,0,0,0.5)'
-              },
-              transition: 'box-shadow 150ms ease'
-            }}>
-              <H3 style={{ lineHeight: 1 }}>Launch</H3>
-            </div>
+              <CoupledModal
+                modalOpenState={leaveCampaignModal}
+                onClose={() => setLeaveCampaignModal(false)}
+                modalElement={
+                  <Modal
+                    body={
+                      <VerticalFlexContainer style={{textAlign:'center'}}>
+                        <H4 >Are you sure you want to leave this campaign?</H4>
+                        <HorizontalFlexContainer style={{ justifyContent: 'space-evenly', marginTop:40}}>
+                          <Button onClick={handleLeaveCampaign}>Yes</Button>
+                          <Button onClick={() => setLeaveCampaignModal(false)}>No</Button>
+                        </HorizontalFlexContainer>
+                      </VerticalFlexContainer>
+                    }
+                  />}
+                element={<LeaveCampaignButton onClick={() => setLeaveCampaignModal(true)} />}
+              />
+
+            </HorizontalFlexContainer>
+
           </VerticalFlexContainer>
 
           {/* Title and description */}
@@ -176,8 +216,8 @@ const Campaign = () => {
             </div>
           </VerticalFlexContainer>
           {/* Other players */}
-          <div style={{width:"20%", }}>
-            <PlayersList players={data && data.campaignByReference.players} owner={data && data.campaignByReference.owner}/>
+          <div style={{ width: "20%", }}>
+            <PlayersList players={data && data.campaignByReference.players} owner={data && data.campaignByReference.owner} />
           </div>
         </HorizontalFlexContainer>
 
