@@ -131,7 +131,7 @@ const Campaign = () => {
   return (
     <AuthWrapper page={"campaign"} params={reference}>
       <div style={{ margin: '80px 80px' }}>
-        {data && data.campaignByReference.isOwner && "This is all true"}
+        {data && data?.campaignByReference?.isOwner && "This is all true"}
         <HorizontalFlexContainer style={{ height: "45vh", marginBottom: 150 }}>
           {/* Image and Button */}
           <VerticalFlexContainer style={{ width: "45%", position: 'relative', justifyContent: 'space-around' }}>
@@ -172,7 +172,7 @@ const Campaign = () => {
           {/* Title and description */}
           <VerticalFlexContainer style={{ margin: '0px 50px', width: "50%", }}>
             <div style={{ textAlign: 'center', padding: '20px 0px 60px 0px' }}>
-              <H3 style={{ lineHeight: 1 }}>{data && data.campaignByReference.title}</H3>
+              <H3 style={{ lineHeight: 1 }}>{data && data?.campaignByReference?.title}</H3>
             </div>
 
             <div style={{ overflowY: 'auto', }}>
@@ -186,7 +186,7 @@ const Campaign = () => {
           </VerticalFlexContainer>
           {/* Other players */}
           <div style={{ width: "20%", }}>
-            <PlayersList players={data && data.campaignByReference.players} owner={data && data.campaignByReference.owner} />
+            <PlayersList players={data && data?.campaignByReference?.players} owner={data && data?.campaignByReference?.owner} />
           </div>
         </HorizontalFlexContainer>
 
