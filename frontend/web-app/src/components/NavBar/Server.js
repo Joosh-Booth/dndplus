@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { HorizontalFlexContainer } from '@components/containers'
-import { RegularText } from "@dnd/components/texts"
+import { RegularText } from "@components/texts"
 import { getBackgroundColour } from '@dnd/theme'
 
 

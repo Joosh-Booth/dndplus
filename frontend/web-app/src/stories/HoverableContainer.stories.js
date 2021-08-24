@@ -1,6 +1,6 @@
 import React from 'react';
 import {HoverableContainer,CenteredContainer}  from '@components/containers';
-import { RegularText } from "@dnd/components/texts"
+import { RegularText } from "@components/texts"
 
 export default {
   title: 'Components/Containers/HoverableContainer',

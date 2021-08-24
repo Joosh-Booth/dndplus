@@ -1,6 +1,6 @@
 import React from 'react';
 import {SignupForm}  from '@components/forms';
-import { CREATE_USER } from '@components/mutations'
+import { CREATE_USER } from '@dnd/gql/mutations'
 import { MockedProvider } from '@apollo/client/testing'
 import { gql } from '@apollo/client';
 

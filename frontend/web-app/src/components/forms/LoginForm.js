@@ -10,9 +10,9 @@ import { Button } from "@components/buttons"
 import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import { TextInput } from "@components/inputs"
-import { AUTHENTICATE_USER } from '@components/mutations'
 import { setLogin } from '@components/slices/loginSlice'
-import { RegularText } from "@dnd/components/texts"
+import { RegularText } from "@components/texts"
+import { AUTHENTICATE_USER } from '@gql/mutations'
 
 
 
@@ -44,12 +44,12 @@ const LoginForm = ({ swap = () => null }) => {
           if (location.pathname == "/login") {
             history.replace(from)
           }
-        } else if(response.data.authenticateUser.__typename === "AuthenticateUserError"){
-          if(response.data.authenticateUser.nonFieldErrors.includes("Username and/or password was incorrect"))
-          setErrors({
-            username:response.data.authenticateUser.nonFieldErrors[0],
-            password:response.data.authenticateUser.nonFieldErrors[0]
-          })
+        } else if (response.data.authenticateUser.__typename === "AuthenticateUserError") {
+          if (response.data.authenticateUser.nonFieldErrors.includes("Username and/or password was incorrect"))
+            setErrors({
+              username: response.data.authenticateUser.nonFieldErrors[0],
+              password: response.data.authenticateUser.nonFieldErrors[0]
+            })
         }
       }}>
 
@@ -62,7 +62,7 @@ const LoginForm = ({ swap = () => null }) => {
       }) => (
         <form onSubmit={handleSubmit}>
           <VerticalFlexContainer style={{ justifyContent: 'space-around' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom:20 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 20 }}>
               <H1 style={{}}>Log in</H1>
               <RegularText style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Sign up</RegularText>
             </div>

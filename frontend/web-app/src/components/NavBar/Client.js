@@ -6,7 +6,7 @@ import { Button } from '@components/buttons'
 import { HorizontalFlexContainer } from '@components/containers'
 import { setLogin } from '@components/slices/loginSlice'
 import SignupOrLogin from '@components/SignupOrLogin'
-import { RegularText } from "@dnd/components/texts"
+import { RegularText } from "@components/texts"
 import { getBackgroundColour } from '@dnd/theme'
 
 

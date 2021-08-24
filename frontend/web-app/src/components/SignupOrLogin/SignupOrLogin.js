@@ -3,7 +3,7 @@ import { useState } from "react";
 import { HorizontalFlexContainer } from '@components/containers'
 import { LoginForm, SignupForm } from "@components/forms";
 import { CoupledModal, Modal } from '@components/Modals';
-import { RegularText } from "@dnd/components/texts"
+import { RegularText } from "@components/texts"
 
 
 const SignupOrLogin = () => {

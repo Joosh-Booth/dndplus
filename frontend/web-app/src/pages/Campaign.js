@@ -1,7 +1,7 @@
 
 
-import { useRef, useState } from "react"
-import { gql, useLazyQuery, useMutation } from "@apollo/client"
+import { useState } from "react"
+import { useLazyQuery, useMutation } from "@apollo/client"
 import { Redirect, Route } from "react-router"
 import { useHistory } from "react-router-dom";
 
@@ -9,44 +9,13 @@ import { AuthWrapper } from "@components/authentication"
 import { LeaveCampaignButton, LaunchCampaignButton, Button } from "@components/buttons"
 import { HorizontalFlexContainer, VerticalFlexContainer } from "@components/containers"
 import { H1, H3, H4 } from "@components/headers"
+import { CoupledModal, Modal } from "@components/Modals"
 import PlayersList from "@components/PlayersList"
 import { Sections } from "@components/sections"
 import { RegularText } from "@components/texts"
+import { CAMPAIGN_BY_REFERENCE } from "@gql/queries";
+import { LEAVE_CAMPAIGN } from "@gql/mutations";
 import DnD from "@images/DnD.bmp"
-import { CoupledModal, Modal } from "@components/Modals"
-import { getBackgroundColour } from "@dnd/theme";
-
-
-const CAMPAIGN_BY_REFERENCE = gql`
-  query CampaignbyReference($reference: String!) {
-    campaignByReference(reference: $reference) {
-      isOwner
-      title
-      roomCode
-      players{
-        username
-      }
-    }
-  }
-`
-
-const LEAVE_CAMPAIGN = gql`
-  mutation LeaveCampaign($input:LeaveCampaignInput!) {
-    leaveCampaign(input: $input) {
-      __typename
-      ... on LeaveCampaignSuccess{
-        message
-      }
-      ... on LeaveCampaignError{
-        fieldErrors{
-          fieldName
-          errors
-        }
-        nonFieldErrors
-      } 
-    }
-  }
-`
 
 
 const Campaign = () => {
@@ -184,9 +153,9 @@ const Campaign = () => {
                 modalElement={
                   <Modal
                     body={
-                      <VerticalFlexContainer style={{textAlign:'center'}}>
+                      <VerticalFlexContainer style={{ textAlign: 'center' }}>
                         <H4 >Are you sure you want to leave this campaign?</H4>
-                        <HorizontalFlexContainer style={{ justifyContent: 'space-evenly', marginTop:40}}>
+                        <HorizontalFlexContainer style={{ justifyContent: 'space-evenly', marginTop: 40 }}>
                           <Button onClick={handleLeaveCampaign}>Yes</Button>
                           <Button onClick={() => setLeaveCampaignModal(false)}>No</Button>
                         </HorizontalFlexContainer>

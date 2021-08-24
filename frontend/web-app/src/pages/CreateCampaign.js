@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client"
 import { Formik } from "formik"
 import { VerticalFlexContainer, HorizontalFlexContainer } from '@components/containers'
 import { TextInput } from '@components/inputs'
-import { CREATE_CAMPAGIN } from '@components/mutations'
+import { CREATE_CAMPAGIN } from '@dnd/gql/mutations'
 import { RegularText } from '@components/texts'
 import { Button } from '@components/buttons'
 

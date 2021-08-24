@@ -8,8 +8,8 @@ import { Button } from "@components/buttons"
 import { VerticalFlexContainer } from "@components/containers"
 import { H1 } from "@components/headers"
 import { TextInput } from "@components/inputs"
-import { CREATE_USER } from '@components/mutations'
-import { RegularText } from "@dnd/components/texts"
+import { RegularText } from "@components/texts"
+import { CREATE_USER } from "@gql/mutations";
 
 
 const FIELD_ERROR_TO_FIELD_MAP = {
@@ -95,7 +95,7 @@ const SignupForm = ({ swap = () => null }) => {
       }) => (
         <form onSubmit={handleSubmit}>
           <VerticalFlexContainer style={{ justifyContent: 'space-around' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom:20 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: 20 }}>
               <H1 style={{}}>Sign up now</H1>
               <RegularText style={{ textAlign: 'bottom', cursor: 'pointer' }} onClick={swap}>Log in</RegularText>
             </div>

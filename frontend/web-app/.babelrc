@@ -12,6 +12,7 @@
       "root": ["./"],
       "alias": {
         "@components": "./src/components",
+        "@gql": "./src/gql",
         "@dnd": "./src",
         "@images": ["./images"]
 
