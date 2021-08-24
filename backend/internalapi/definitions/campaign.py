@@ -17,7 +17,4 @@ class Campaign(graphene.ObjectType):
         return campaign.user_set.all()
     
     def resolve_is_owner(campaign, info):
-        print(campaign.created_by == info.context.user)
-        print(campaign.created_by)
-        print(info.context.user)
         return campaign.owner == info.context.user
