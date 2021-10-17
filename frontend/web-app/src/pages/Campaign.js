@@ -6,7 +6,7 @@ import { Redirect, Route } from "react-router"
 import { useHistory } from "react-router-dom";
 
 import { AuthWrapper } from "@components/authentication"
-import { LeaveCampaignButton, LaunchCampaignButton, Button } from "@components/buttons"
+import { LeaveCampaignButton, LaunchCampaignButton, Button, InvitePlayerButton } from "@components/buttons"
 import { HorizontalFlexContainer, VerticalFlexContainer } from "@components/containers"
 import { H1, H3, H4 } from "@components/headers"
 import { CoupledModal, Modal } from "@components/Modals"
@@ -131,7 +131,6 @@ const Campaign = () => {
   return (
     <AuthWrapper page={"campaign"} params={reference}>
       <div style={{ margin: '80px 80px' }}>
-        {data && data?.campaignByReference?.isOwner && "This is all true"}
         <HorizontalFlexContainer style={{ height: "45vh", marginBottom: 150 }}>
           {/* Image and Button */}
           <VerticalFlexContainer style={{ width: "45%", position: 'relative', justifyContent: 'space-around' }}>
@@ -145,26 +144,28 @@ const Campaign = () => {
             }} />
 
             <HorizontalFlexContainer style={{ justifyContent: 'space-around', margin: 5, }}>
-              <LaunchCampaignButton />
-
-              <CoupledModal
-                modalOpenState={leaveCampaignModal}
-                onClose={() => setLeaveCampaignModal(false)}
-                modalElement={
-                  <Modal
-                    body={
-                      <VerticalFlexContainer style={{ textAlign: 'center' }}>
-                        <H4 >Are you sure you want to leave this campaign?</H4>
-                        <HorizontalFlexContainer style={{ justifyContent: 'space-evenly', marginTop: 40 }}>
-                          <Button onClick={handleLeaveCampaign}>Yes</Button>
-                          <Button onClick={() => setLeaveCampaignModal(false)}>No</Button>
-                        </HorizontalFlexContainer>
-                      </VerticalFlexContainer>
-                    }
-                  />}
-                element={<LeaveCampaignButton onClick={() => setLeaveCampaignModal(true)} />}
-              />
-
+              <HorizontalFlexContainer style={{ width: "50%", alignContent: 'center', justifyContent: 'center' }}>
+                <LaunchCampaignButton maxWidth='10vw' />
+              </HorizontalFlexContainer>
+              <HorizontalFlexContainer style={{ width: "50%", alignContent: 'center', justifyContent: 'center' }}>
+                <CoupledModal
+                  modalOpenState={leaveCampaignModal}
+                  onClose={() => setLeaveCampaignModal(false)}
+                  modalElement={
+                    <Modal
+                      body={
+                        <VerticalFlexContainer style={{ textAlign: 'center' }}>
+                          <H4 >Are you sure you want to leave this campaign?</H4>
+                          <HorizontalFlexContainer style={{ justifyContent: 'space-evenly', marginTop: 40 }}>
+                            <Button onClick={handleLeaveCampaign}>Yes</Button>
+                            <Button onClick={() => setLeaveCampaignModal(false)}>No</Button>
+                          </HorizontalFlexContainer>
+                        </VerticalFlexContainer>
+                      }
+                    />}
+                  element={<LeaveCampaignButton maxWidth='10vw' onClick={() => setLeaveCampaignModal(true)} />}
+                />
+              </HorizontalFlexContainer>
             </HorizontalFlexContainer>
 
           </VerticalFlexContainer>
@@ -186,6 +187,9 @@ const Campaign = () => {
           </VerticalFlexContainer>
           {/* Other players */}
           <div style={{ width: "20%", }}>
+            <div style={{ width: "55%" }}>
+              <InvitePlayerButton />
+            </div>
             <PlayersList players={data && data?.campaignByReference?.players} owner={data && data?.campaignByReference?.owner} />
           </div>
         </HorizontalFlexContainer>

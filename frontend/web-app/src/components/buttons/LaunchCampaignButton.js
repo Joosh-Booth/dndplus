@@ -3,7 +3,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ExpandingButton from './ExpandingButton'
 
 
-const LaunchCampaignButton = () => {
+const LaunchCampaignButton = ({maxWidth}) => {
 
   return(
     <ExpandingButton style={{
@@ -12,6 +12,7 @@ const LaunchCampaignButton = () => {
     }} 
       icon={<PlayArrowIcon style={{height:'100%', width:'100%'}} />} 
       child={<RegularText>Launch Campaign</RegularText>}
+      maxWidth={maxWidth}
     />
   )
 }
